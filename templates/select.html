@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>キャラクター選択</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+<body>
+    <h2>おしゃべりしたいキャラクターを選んでね</h2>
+    <form method="post">
+        <button type="submit" name="character" value="ちいかわ">ちいかわ</button>
+        <button type="submit" name="character" value="ハチワレ">ハチワレ</button>
+        <button type="submit" name="character" value="うさぎ">うさぎ</button>
+    </form>
+</body>
+</html>

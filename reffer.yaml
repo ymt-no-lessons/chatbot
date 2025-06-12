@@ -1,0 +1,12 @@
+/chiikawa_chatbot/
+    app.py
+    /templates/
+        index.html         ← 名前入力
+        select.html        ← キャラ選択
+        confirm.html       ← 確認画面（画像＋名前）
+        chat.html
+        
+    /static/
+        chiikawa.png
+        hachiware.png
+        usagi.png
