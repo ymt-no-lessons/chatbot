@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>チャット画面</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+
+</head>
+<body>
+    <!-- キャラクターを選んで決定するまでのところ -->
+    <div class="chat-box">
+        <div class="character-info">
+            <img class="character-img" src="{{ url_for('static', filename=images[0]) }}" alt="{{ character }}" width="200">
+            <h2>{{ character }}とおしゃべり</h2>
+        </div>
+        <ul>
+            {% for reply in replies %}
+                <li>{{ reply.content }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+
+
+    <!-- LINE風UIでチャットをするところ -->
+    <div class="chat-area">
+        <!-- ここにfor文で履歴を並べる -->
+        <ul class="message-list">
+        {% for message in history %}
+            <li class="message {% if message.sender == 'character' %}left{% else %}right{% endif %}">
+                {% if message.sender == 'character' %}
+                    <img class="icon" src="{{ url_for('static', filename=images[0]) }}">
+                {% endif %}
+                <div class="bubble">
+                    {% if message.type == 'image' %}
+                        <img src="{{ url_for('static', filename=message.content) }}" alt="スタンプ" width="100">
+                    {% else %}
+                        {{ message.content }}
+                    {% endif %}
+                </div>
+                {% if message.sender == 'user' %}
+                    <img class="icon" src="{{ url_for('static', filename='user_icon.png') }}">
+                {% endif %}
+            </li>
+        {% endfor %}
+    </ul>
+
+
+</body>
+</html>
+
+
+
+
+

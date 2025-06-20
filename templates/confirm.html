@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>キャラクター確認</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+<body>
+    <h2>{{ username }}さんだね！こんにちは！</h2>
+    <p>{{ character }}とおしゃべりする？</p>
+    <img src="{{ url_for('static', filename=images[0]) }}" alt="{{ character }}" width="200">
+    <form method="post">
+        <button type="submit" name="action" value="決定">{{ character }}とおしゃべりする</button>
+        <button type="submit" name="action" value="やり直す">やり直す</button>
+    </form>
+</body>
+</html>
