@@ -59,13 +59,18 @@ def chat():
 
     if 'history' not in session:
         session['history'] = [
-            {'sender': 'character', 'text': 'やあ、こんにちは！'}
+            {'sender': 'character', 'text': 'ワァ…！'}
         ]
     history = session['history']
 
     if request.method == 'POST':
         user_message = request.form['message']
-        history.append({'sender': 'user', 'text': user_message})
+       # ユーザー発言
+        history.append({
+            'sender': 'user',
+            'type': 'text',
+            'content': user_message
+        })
 
         # キャラごとにリプライ関数を呼ぶ
         if character == "ちいかわ":
@@ -78,11 +83,30 @@ def chat():
             reply_text = "うまく返せない…"
 
         # リプライを履歴に追加
+        # キャラ発言
+        # reply_textがdict（type/content付き）ならそのまま、strならテキストとして追加
+        if isinstance(reply_text, dict):
+            reply_data = reply_text
+        else:
+            reply_data = {'type': 'text', 'content': reply_text}
+
         history.append({
             'sender': 'character',
-            'type': 'text',
-            'content': reply_text
+            **reply_data
         })
+
+        if request.method == 'POST':
+            user_message = request.form['message']
+            # ユーザー発言を履歴に追加
+            history.append({
+                'sender': 'user',
+                'type': 'text',
+                'content': user_message
+            })
+            # キャラの返事も追加（既存ロジック）
+            # ...
+        session['history'] = history
+
 
     return render_template(
         'chat.html',
@@ -100,3 +124,9 @@ import os
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5000))
     app.run(host="0.0.0.0", port=port)
+
+
+
+
+
+
