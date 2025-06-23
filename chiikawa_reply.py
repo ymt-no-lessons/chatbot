@@ -8,8 +8,8 @@ def extract_head(user_message):
     return user_message[0] + "…"
 
 def check_special_words(user_message):
-    if "むり" in user_message:
-        return "ム…"
+    if "ねえ" in user_message:
+        return "ン…"
     if "いや" in user_message:
         return "イヤ…？"
     if "かなしい" in user_message or "悲しい" in user_message:
