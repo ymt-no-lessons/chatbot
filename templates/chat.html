@@ -14,11 +14,6 @@
             <img class="character-img" src="{{ url_for('static', filename=images[0]) }}" alt="{{ character }}" width="200">
             <h2>{{ character }}とおしゃべり</h2>
         </div>
-        <ul>
-            {% for reply in replies %}
-                <li>{{ reply.content }}</li>
-            {% endfor %}
-        </ul>
     </div>
 
 
@@ -33,9 +28,9 @@
                 {% endif %}
                 <div class="bubble">
                     {% if message.type == 'image' %}
-                        <img src="{{ url_for('static', filename=message.content) }}" alt="スタンプ" width="100">
+                        <img src="{{ url_for('static', filename=message.content) }}" width="100" alt="スタンプ">
                     {% else %}
-                        {{ message.content }}
+                        {{ message.content or message.text }}
                     {% endif %}
                 </div>
                 {% if message.sender == 'user' %}
@@ -43,9 +38,13 @@
                 {% endif %}
             </li>
         {% endfor %}
-    </ul>
+        </ul>
 
-
+        <form method="post" class="input-row">
+            <input type="text" name="message" placeholder="メッセージを入力" autocomplete="off">
+            <button type="submit">送信</button>
+        </form>
+    </div>
 </body>
 </html>
 

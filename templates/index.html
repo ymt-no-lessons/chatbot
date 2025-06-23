@@ -5,13 +5,14 @@
     <title>名前入力</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 
+
 </head>
 <body>
     <h2>あなたの名前を入力してください</h2>
     <form method="post">
         <input type="text" name="username" required>
-        <button type="submit">決定</button>
-        <button type="reset">やり直し</button>
+        <button type="submit" name="action" value="決定">決定</button>
+        <button type="submit" name="action" value="やり直す">やり直す</button>
     </form>
 </body>
 </html>
