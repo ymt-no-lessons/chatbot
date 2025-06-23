@@ -107,17 +107,17 @@ def chat():
             # ...
         session['history'] = history
 
+       # ここでリダイレクト！ これが大事
+        return redirect(url_for('chat'))
 
-    return render_template(
-        'chat.html',
-        history=history,
-        character=data['label'],
-        images=data['images'],
-        replies=data['replies']
-    )
-
-# if __name__ == '__main__':
-#     app.run(debug=True)
+        # GET（またはリダイレクト後）は履歴表示
+        return render_template(
+            'chat.html',
+            history=history,
+            character=data['label'],
+            images=data['images'],
+            replies=data['replies']
+        )
 
 import os
 
