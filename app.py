@@ -25,11 +25,7 @@ def select():
 def confirm():
     username = session.get('username')
     character = session.get('character')
-    character_data = {
-        'ちいかわ': {'images': ['images/chiikawa01.png', 'images/chiikawa02.png'], 'label': 'ちいかわ'},
-        'ハチワレ': {'images': ['images/hachiware01.png','images/hachiware02.png'], 'label': 'ハチワレ'},
-        'うさぎ': {'images': ['images/usagi01.png','images/usagi02.png'], 'label': 'うさぎ'}
-    }
+    data = character_data[character]
     
     if not (username and character):
         return redirect(url_for('index'))  # データがなければ最初に戻る
@@ -59,18 +55,14 @@ def chat():
 
     if 'history' not in session:
         session['history'] = [
-            {'sender': 'character', 'text': 'ワァ…！'}
+            {'sender': 'character', 'type': 'text', 'content': 'やあ、こんにちは！'}
         ]
     history = session['history']
 
     if request.method == 'POST':
         user_message = request.form['message']
-       # ユーザー発言
-        history.append({
-            'sender': 'user',
-            'type': 'text',
-            'content': user_message
-        })
+        # ユーザー発言を履歴に追加
+        history.append({'sender': 'user', 'type': 'text', 'content': user_message})
 
         # キャラごとにリプライ関数を呼ぶ
         if character == "ちいかわ":
@@ -82,42 +74,28 @@ def chat():
         else:
             reply_text = "うまく返せない…"
 
-        # リプライを履歴に追加
-        # キャラ発言
-        # reply_textがdict（type/content付き）ならそのまま、strならテキストとして追加
+        # キャラの返事を履歴に追加（type/content形式も考慮）
         if isinstance(reply_text, dict):
             reply_data = reply_text
         else:
             reply_data = {'type': 'text', 'content': reply_text}
 
-        history.append({
-            'sender': 'character',
-            **reply_data
-        })
+        history.append({'sender': 'character', **reply_data})
 
-        if request.method == 'POST':
-            user_message = request.form['message']
-            # ユーザー発言を履歴に追加
-            history.append({
-                'sender': 'user',
-                'type': 'text',
-                'content': user_message
-            })
-            # キャラの返事も追加（既存ロジック）
-            # ...
         session['history'] = history
 
-       # ここでリダイレクト！ これが大事
+        # POST-Redirect-GETで二重送信防止！
         return redirect(url_for('chat'))
 
-        # GET（またはリダイレクト後）は履歴表示
-        return render_template(
-            'chat.html',
-            history=history,
-            character=data['label'],
-            images=data['images'],
-            replies=data['replies']
-        )
+    # GET（またはリダイレクト後）は履歴表示
+    return render_template(
+        'chat.html',
+        history=history,
+        character=data['label'],
+        images=data['images'],
+        replies=data['replies']
+    )
+
 
 import os
 
