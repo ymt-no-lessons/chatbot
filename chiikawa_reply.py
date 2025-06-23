@@ -21,17 +21,19 @@ def check_special_words(user_message):
 def reply(user_message):
     # 「むり」が入ってたら専用スタンプを返す
     if "むり" in user_message:
-        return {"type": "image", "content": "images/chiikawa_stamp_muri.png"}
+        return {"type": "image", "content": "images/chiikawa/chiikawa_stamp_muri.png"}
 
     # 「すごい」が入ってたら専用スタンプを返す
     if "すごい" in user_message or "スゴイ" in user_message:
-        return {"type": "image", "content": "images/chiikawa_stamp_sugoi.png"}
+        return {"type": "image", "content": "images/chiikawa/chiikawa_stamp03.png"}
 
     # それ以外は通常パターン（テキストor汎用画像）をランダムで返す
     import random
     patterns = [
         {"type": "text", "content": "ワァ…"},
         {"type": "text", "content": user_message[:2] + "…"},
-        {"type": "image", "content": "images/chiikawa_stamp01.png"},
+        {"type": "image", "content": "images/chiikawa/chiikawa_stamp01.png"},
+        {"type": "image", "content": "images/chiikawa/chiikawa_stamp02.png"},
+        {"type": "image", "content": "images/chiikawa/chiikawa_stamp03.png"},
     ]
     return random.choice(patterns)

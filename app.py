@@ -55,7 +55,7 @@ def chat():
 
     if 'history' not in session:
         session['history'] = [
-            {'sender': 'character', 'type': 'text', 'content': 'やあ、こんにちは！'}
+            {'sender': 'character', 'type': 'text', 'content': 'やあ'}
         ]
     history = session['history']
 
