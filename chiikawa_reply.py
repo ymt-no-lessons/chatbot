@@ -47,7 +47,8 @@ def reply(user_message):
         {"type": "image", "content": "images/chiikawa/chiikawa_stamp01.png"},
         {"type": "image", "content": "images/chiikawa/chiikawa_stamp02.png"},
         {"type": "image", "content": "images/chiikawa/chiikawa_stamp03.png"},
-        {"type": "image", "content": "images/chiikawa/chiikawa_stamp04.png"},
-        {"type": "image", "content": "images/chiikawa/chiikawa_stamp05.png"}      
+        {"type": "image", "content": "images/chiikawa/chiikawa_stamp10.png"},
+        {"type": "image", "content": "images/chiikawa/chiikawa_stamp11.png"},
+        {"type": "image", "content": "images/chiikawa/chiikawa_stamp12.png"}    
     ]
     return random.choice(patterns)
