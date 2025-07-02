@@ -19,7 +19,7 @@ width="60" alt="犬アイコン1">
     </label>
     <label>
         <input type="radio" name="icon" value="user_icon02.png">
-        <img src="{{ url_for('static', filename='user_icon02.png') }}" width="60" alt="犬アイコン2">
+        <img src="{{ url_for('static', filename=session['user_icon']) }}" alt="ユーザーアイコン" width="60">
     </label>
 <!-- もっと増やすなら同じパターンで -->
 
