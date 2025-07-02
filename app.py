@@ -9,8 +9,10 @@ app.secret_key = 'your_secret_key'  # 任意の文字列でOK
 def index():
     if request.method == 'POST':
         session['username'] = request.form['username']
+        session['user_icon'] = request.form['icon']
         return redirect(url_for('select'))
     return render_template('index.html')
+
 
 # 2. キャラ選択画面を出すよ
 @app.route('/select', methods=['GET', 'POST'])
@@ -55,8 +57,9 @@ def chat():
 
     if 'history' not in session:
         session['history'] = [
-            {'sender': 'character', 'type': 'text', 'content': 'やあ'}
+            {'sender': 'character', 'type': 'text', 'content': data['greeting']}
         ]
+
     history = session['history']
 
     if request.method == 'POST':
@@ -102,9 +105,3 @@ import os
 if __name__ == "__main__":
     port = int(os.environ.get("PORT", 5000))
     app.run(host="0.0.0.0", port=port)
-
-
-
-
-
-

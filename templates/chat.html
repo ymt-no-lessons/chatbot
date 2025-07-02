@@ -4,11 +4,9 @@
     <meta charset="UTF-8">
     <title>チャット画面</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-
-
 </head>
 <body>
-    <!-- キャラクターを選んで決定するまでのところ -->
+    <!-- キャラクターの情報 -->
     <div class="chat-box">
         <div class="character-info">
             <img class="character-img" src="{{ url_for('static', filename=images[0]) }}" alt="{{ character }}" width="200">
@@ -16,10 +14,8 @@
         </div>
     </div>
 
-
-    <!-- LINE風UIでチャットをするところ -->
+    <!-- LINE風チャットエリア -->
     <div class="chat-area">
-        <!-- ここにfor文で履歴を並べる -->
         <ul class="message-list">
         {% for message in history %}
             <li class="message {% if message.sender == 'character' %}left{% else %}right{% endif %}">
@@ -34,7 +30,7 @@
                     {% endif %}
                 </div>
                 {% if message.sender == 'user' %}
-                    <img class="icon" src="{{ url_for('static', filename='user_icon.png') }}">
+                    <img class="icon" src="{{ url_for('static', filename=session['user_icon']) }}">
                 {% endif %}
             </li>
         {% endfor %}
@@ -45,10 +41,13 @@
             <button type="submit">送信</button>
         </form>
     </div>
+
+    <form action="/download_history" method="post">
+        <button type="submit">履歴をダウンロード</button>
+    </form>
+
+    <form action="/reset" method="post">
+        <button type="submit">リロード</button>
+    </form>
 </body>
 </html>
-
-
-
-
-
