@@ -96,7 +96,6 @@ def chat():
         history=history,
         character=data['label'],
         images=data['images'],
-        replies=data['replies']
     )
 
 
