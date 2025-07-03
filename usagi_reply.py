@@ -17,12 +17,9 @@ def reply(user_message):
     patterns = [
         {"type": "text", "content": "フゥ～ン"},
         {"type": "text", "content": "イィィィヤァァアァッハー!!!"},        {"type": "text", "content": "ウ～ラ～ヤハヤハ"},
-        {"type": "image", "content": "images/usagi/usagi_stamp04.png"},     
-        {"type": "image", "content": "images/usagi/usagi_stamp05.png"},
+        {"type": "image", "content": "images/usagi/usagi_stamp02.png"},     
         {"type": "image", "content": "images/usagi/usagi_stamp06.png"},
         {"type": "image", "content": "images/usagi/usagi_stamp07.png"},
-        {"type": "image", "content": "images/usagi/usagi_stamp08.png"},
-        {"type": "image", "content": "images/usagi/usagi_stamp09.png"},
-        {"type": "image", "content": "images/usagi/usagi_stamp10.png"}
+
     ]
     return random.choice(patterns)

@@ -25,6 +25,13 @@ def reply(user_message):
     if m:
         food = m.group(1).strip()
         return {"type": "text", "content": f"食べたいよね、{food}！"}
+
+    m = re.match(r'(.+?)たべたい', user_message)
+    if m:
+        food = m.group(1).strip()
+        return {"type": "text", "content": f"たべたいよね、{food}！"}
+
+    
     m = re.match(r'(.+?)したい', user_message)
     if m:
         thing = m.group(1).strip()
@@ -50,9 +57,9 @@ def reply(user_message):
     # 3. たまに【スタンプ】で返す
     if random.random() < 0.2:  # 20%の確率でスタンプ返し
         stamp_images = [
-            "images/hachiware/hachiware_stamp01.png",
-            "images/hachiware/hachiware_stamp02.png",
-            "images/hachiware/hachiware_stamp03.png",
+            {"type": "image", "content": "images/hachiware/hachiware_stamp02.png"},
+             {"type": "image", "content": "images/hachiware/hachiware_stamp03.png"}
+
         ]
         return {"type": "image", "content": random.choice(stamp_images)}
 
@@ -66,7 +73,9 @@ def reply(user_message):
         "強くなりたいな…",
         "したいのッ？共有ッ！",
         "がんばって…",
-        "images/hachiware/hachiware_stamp08.png",
-        "images/hachiware/hachiware_stamp09.png"
+        {"type": "image", "content": "images/hachiware/hachiware_stamp08.png"},
+        {"type": "image", "content": "images/hachiware/hachiware_stamp09.png"},
+        {"type": "image", "content": "images/hachiware/hachiware_stamp10.png"},
+        {"type": "image", "content": "images/hachiware/hachiware_stamp11.png"}
     ]
     return {"type": "text", "content": random.choice(aizuchi)}
