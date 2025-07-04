@@ -98,6 +98,33 @@ def chat():
         images=data['images'],
     )
 
+# リセットするよ
+@app.route('/reset', methods=['POST'])
+def reset():
+    session.pop('history', None)
+    session.pop('chat_over', None)  # 終了フラグもリセット
+    return redirect(url_for('chat'))
+
+# ダウンロードするよ
+@app.route('/download_history', methods=['POST'])
+def download_history():
+    history = session.get('history', [])
+    lines = []
+    for m in history:
+        if m.get('type') == 'image':
+            lines.append(f"{m.get('sender')}: [スタンプ] {m.get('content')}")
+        else:
+            lines.append(f"{m.get('sender')}: {m.get('content', m.get('text', ''))}")
+    text = "\n".join(lines)
+    return (
+        text,
+        200,
+        {
+            "Content-Type": "text/plain; charset=utf-8",
+            "Content-Disposition": "attachment; filename=chat_history.txt"
+        }
+    )
+
 
 import os
 
