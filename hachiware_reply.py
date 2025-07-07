@@ -55,9 +55,8 @@ def reply(user_message):
             {"type": "image", "content": "images/hachiware/hachiware_stamp02.png"},
             {"type": "image", "content": "images/hachiware/hachiware_stamp03.png"},
             {"type": "image", "content": "images/hachiware/hachiware_stamp06.png"},
-
         ]
-        return {"type": "image", "content": random.choice(stamp_images)}
+        return random.choice(stamp_images)
 
     # 4. それ以外は【あいづち】ランダム
     aizuchi = [
