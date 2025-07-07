@@ -1,7 +1,7 @@
 import random
 import re
 
-def special_word(user_message):
+def check_special_words(user_message):
     if "おやすみ" in user_message or "ねる" in user_message or "寝る" in user_message:
         return {"type": "image", "content": "images/hachiware/hachiware_stamp_sleep.png"}
     if "ありがとう" in user_message:
@@ -11,10 +11,10 @@ def special_word(user_message):
 
 
 def reply(user_message):
-    # 特別な言葉に対する返答
-    result = special_word(user_message)
-    if result:
-        return result
+    # まずspecialワードの判定をする！
+    special = check_special_words(user_message)
+    if special:
+        return special
     
     # 1. 【倒置法】に該当するかを判定
     m = re.match(r'(.+?)食べたい', user_message)

@@ -23,7 +23,7 @@ character_data = {
             'images/usagi/usagi02.png'
         ],
         'label': 'うさぎ',
-        'greeting': 'ウラッ！',
+        'greeting': 'ヤハッ！',
     },
     'シーサー': {
         'images': [
@@ -31,7 +31,7 @@ character_data = {
             'images/sisa/sisa02.png'
         ],
         'label': 'シーサー',
-        'greeting': 'うれシーサー！',
+        'greeting': 'お師匠ッ！',
     },
     'ラッコ': {
         'images': [
@@ -39,7 +39,7 @@ character_data = {
             'images/rakko/rakko02.png'
         ],
         'label': 'ラッコ',
-        'greeting': '自信を持てッ！',
+        'greeting': 'いい判断だッ！',
     },
     'くりまんじゅう': {
         'images': [
@@ -56,6 +56,38 @@ character_data = {
         ],
         'label': 'モモンガ',
         'greeting': 'ほ～ン',
-    }
+    },
+    '古本屋さん（かにちゃん）': {
+        'images': [
+            'images/momonga/momonga01.png',
+            'images/momonga/momonga02.png'
+        ],
+        'label': '古本屋さん（かにちゃん）',
+        'greeting': 'ほ～ン',
+    },
+    '鎧さんたち': {
+        'images': [
+            'images/other/yoroi_stamp04.png.png',
+            'images/other/yoroi_stamp04.png.png'
+        ],
+        'label': '鎧さんたち',
+        'greeting': '友好型かッ',
+    },
+    'でかつよ': {
+        'images': [
+            'images/other/dekatsuyo01.png.png',
+            'images/other/dekatsuyo01.png.png'
+        ],
+        'label': 'でかつよ',
+        'greeting': '叶うかな…',
+    },
+    'あのこ': {
+        'images': [
+            'images/other/anoko_stamp01.png.png',
+            'images/other/anoko_stamp01.png.png'
+        ],
+        'label': 'あのこ',
+        'greeting': '……',
+    },
 }
 # キャラクターのデータをここにまとめておくよ
