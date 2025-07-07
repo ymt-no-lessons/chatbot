@@ -76,4 +76,4 @@ def reply(user_message):
         {"type": "image", "content": "images/hachiware/hachiware_stamp12.png"},
 
     ]
-    return {"type": "text", "content": random.choice(aizuchi)}
+    return random.choice(aizuchi)
