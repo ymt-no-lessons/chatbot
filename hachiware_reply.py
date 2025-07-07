@@ -1,10 +1,6 @@
 import random
 import re
 
-
-import random
-import re
-
 def special_word(user_message):
     if "おやすみ" in user_message or "ねる" in user_message or "寝る" in user_message:
         return {"type": "image", "content": "images/hachiware/hachiware_stamp_sleep.png"}
@@ -31,7 +27,6 @@ def reply(user_message):
         food = m.group(1).strip()
         return {"type": "text", "content": f"たべたいよね、{food}！"}
 
-    
     m = re.match(r'(.+?)したい', user_message)
     if m:
         thing = m.group(1).strip()
@@ -55,14 +50,11 @@ def reply(user_message):
         return {"type": "text", "content": f"{base}…ってコト？"}
 
     # 3. たまに【スタンプ】で返す
-    if random.random() < 0.4:  # 20%の確率でスタンプ返し
+    if random.random() < 0.4:  # 40%の確率でスタンプ返し
         stamp_images = [
             {"type": "image", "content": "images/hachiware/hachiware_stamp02.png"},
-            {"type": "image", "content": "images/hachiware/hachiware_stamp03.png"}
-            {"type": "image", "content": "images/hachiware/hachiware_stamp08.png"},
-            {"type": "image", "content": "images/hachiware/hachiware_stamp09.png"},
-            {"type": "image", "content": "images/hachiware/hachiware_stamp10.png"},
-            {"type": "image", "content": "images/hachiware/hachiware_stamp11.png"}
+            {"type": "image", "content": "images/hachiware/hachiware_stamp03.png"},
+            {"type": "image", "content": "images/hachiware/hachiware_stamp06.png"},
 
         ]
         return {"type": "image", "content": random.choice(stamp_images)}
@@ -71,12 +63,18 @@ def reply(user_message):
     aizuchi = [
         "エヘヘ！",
         "エッ",
-        "がんばってるね！",
+        "！",
         "なんとかなれーッ！",
         "うんうん…",
         "強くなりたいな…",
         "したいのッ？共有ッ！",
         "がんばって…",
+        {"type": "image", "content": "images/hachiware/hachiware_stamp07.png"},
+        {"type": "image", "content": "images/hachiware/hachiware_stamp08.png"},
+        {"type": "image", "content": "images/hachiware/hachiware_stamp09.png"},
+        {"type": "image", "content": "images/hachiware/hachiware_stamp10.png"},
+        {"type": "image", "content": "images/hachiware/hachiware_stamp11.png"},
+        {"type": "image", "content": "images/hachiware/hachiware_stamp12.png"},
 
     ]
     return {"type": "text", "content": random.choice(aizuchi)}
