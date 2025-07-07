@@ -6,10 +6,10 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-<h2>前回のデータが残っています。続きから再開しますか？</h2>
-<form method="post">
-    <button name="action" value="はい">はい</button>
-    <button name="action" value="いいえ">いいえ</button>
-</form>
+  <h2>前回のデータが残っています。<br>続きからおしゃべりしますか？</h2>
+  <form method="post" action="/resume_confirm">
+    <button type="submit" name="action" value="はい">はい（続きから）</button>
+    <button type="submit" name="action" value="いいえ">いいえ（最初から）</button>
+  </form>
 </body>
 </html>
