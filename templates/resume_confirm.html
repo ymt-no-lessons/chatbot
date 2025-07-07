@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>チャットを続けるか確認</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<h2>前回のデータが残っています。続きから再開しますか？</h2>
+<form method="post">
+    <button name="action" value="はい">はい</button>
+    <button name="action" value="いいえ">いいえ</button>
+</form>
+</body>
+</html>

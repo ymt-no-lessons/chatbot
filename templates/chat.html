@@ -6,15 +6,13 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
-    <!-- キャラクターの情報 -->
     <div class="chat-box">
         <div class="character-info">
             <img class="character-img" src="{{ url_for('static', filename=images[0]) }}" alt="{{ character }}" width="200">
             <h2>{{ character }}とおしゃべり</h2>
         </div>
     </div>
-
-    <!-- LINE風チャットエリア -->
+    
     <div class="chat-area">
         <ul class="message-list">
         {% for message in history %}
@@ -30,24 +28,26 @@
                     {% endif %}
                 </div>
                 {% if message.sender == 'user' %}
-                    <img class="icon" src="{{ url_for('static', filename=session['user_icon']) }}">
+                    <img class="icon" src="{{ url_for('static', filename=session.get('user_icon', 'user_icon01.png')) }}">
                 {% endif %}
             </li>
         {% endfor %}
         </ul>
 
-        <form method="post" class="input-row">
-            <input type="text" name="message" placeholder="メッセージを入力" autocomplete="off">
-            <button type="submit">送信</button>
-        </form>
+        {% if not chat_over %}
+            <form method="post" class="input-row">
+                <input type="text" name="message" placeholder="メッセージを入力" autocomplete="off">
+                <button type="submit">送信</button>
+            </form>
+            <form action="/download_history" method="post">
+                <button type="submit">履歴をダウンロード</button>
+            </form>
+            <form action="/reset" method="post">
+                <button type="submit">リロード</button>
+            </form>
+        {% else %}
+            <div class="center"><b>討伐に行ってしまったので、また明日チャットしてね！</b></div>
+        {% endif %}
     </div>
-
-    <form action="/download_history" method="post">
-        <button type="submit">履歴をダウンロード</button>
-    </form>
-
-    <form action="/reset" method="post">
-        <button type="submit">リロード</button>
-    </form>
 </body>
 </html>
