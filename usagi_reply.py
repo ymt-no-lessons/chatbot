@@ -21,8 +21,11 @@ def reply(user_message):
     # patternsからランダムで返す
     patterns = [
         {"type": "text", "content": "フゥ～ン"},
-        {"type": "text", "content": "イィィィヤァァアァッハー!!!"},        {"type": "text", "content": "ウ～ラ～ヤハヤハ"},
-        {"type": "image", "content": "images/usagi/usagi_stamp02.png"},     
+        {"type": "text", "content": "イィィィヤァァアァッハー!!!"},
+        {"type": "text", "content": "ウ～ラ～ヤハヤハ"},
+        {"type": "image", "content": "images/usagi/usagi_stamp03.png"}, 
+        {"type": "image", "content": "images/usagi/usagi_stamp04.png"},
+        {"type": "image", "content": "images/usagi/usagi_stamp05.png"},    
         {"type": "image", "content": "images/usagi/usagi_stamp06.png"},
         {"type": "image", "content": "images/usagi/usagi_stamp07.png"},
 

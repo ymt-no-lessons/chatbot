@@ -16,12 +16,13 @@ def check_special_words(user_message):
         return {"type": "text", "content": "ワァ…"}
     if "悪夢" in user_message or "アクム" in user_message or "あくむ" in user_message:
         return {"type": "image", "content": "images/chiikawa/chiikawa_stamp_nightmare.png"}
+    if "がんばって" in user_message or "頑張って" in user_message or "がんばれ" in user_message or "頑張れ" in user_message:
+        return {"type": "image", "content": "images/chiikawa/chiikawa_stamp06.png"}
     if "えらい" in user_message or "えらいっ" in user_message or "えらいね" in user_message or "えらい！" in user_message or "えらいよ" in user_message:
         return {"type": "image", "content": "images/chiikawa/chiikawa_stamp09.png"}
-    if "がんばって" in user_message or "頑張って" in user_message:
-        return {"type": "image", "content": "images/chiikawa/chiikawa_stamp06.png"}
     if "黒い流れ星" in user_message or "ループ" in user_message:
         return {"type": "image", "content": "images/chiikawa/chiikawa_stamp_loop.png"}
+    
     return None
 
 def reply(user_message):
@@ -51,8 +52,11 @@ def reply(user_message):
         {"type": "image", "content": "images/chiikawa/chiikawa_stamp01.png"},
         {"type": "image", "content": "images/chiikawa/chiikawa_stamp02.png"},
         {"type": "image", "content": "images/chiikawa/chiikawa_stamp03.png"},
-        {"type": "image", "content": "images/chiikawa/chiikawa_stamp10.png"},
-        {"type": "image", "content": "images/chiikawa/chiikawa_stamp11.png"},
-        {"type": "image", "content": "images/chiikawa/chiikawa_stamp12.png"}    
+        {"type": "image", "content": "images/chiikawa/chiikawa_stamp04.png"},
+        {"type": "image", "content": "images/chiikawa/chiikawa_stamp05.png"}, 
+        {"type": "image", "content": "images/chiikawa/chiikawa_stamp07.png"},
+        {"type": "image", "content": "images/chiikawa/chiikawa_stamp08.png"}, 
+        {"type": "image", "content": "images/chiikawa/chiikawa_stamp09.png"},       
+        {"type": "image", "content": "images/chiikawa/chiikawa_stamp10.png"}
     ]
     return random.choice(patterns)
