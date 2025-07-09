@@ -7,7 +7,12 @@ def check_special_words(user_message):
     if "ありがとう" in user_message:
         return {"type": "text", "content": "どういたしましてッ！"}
     # …ここに増やしていく
-    return None  # ヒットしなければNone
+    if "すいか" in user_message:
+        return {"type": "image", "content": "images/other/suikawari.png"}
+    if "水" in user_message or "暑" in user_message or "熱中症" in user_message:
+        return {"type": "image", "content": "images/other/water01.png"}
+    # ヒットしなければNone
+    return None
 
 
 def reply(user_message):
