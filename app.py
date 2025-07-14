@@ -98,21 +98,25 @@ def chat():
 
         # 10回目のPOST送信直後、終了演出
         user_turns = sum(1 for m in history if m['sender'] == 'user')
-        if user_turns >= 10:
             # ここで終了メッセージ＆画像追加
-            if datetime.now().weekday() == 5:  # 土曜の場合
-                msg = data['bye_special']['saturday']['message']
-                img = data['bye_special']['saturday']['image']
-            elif session.get('username') == 'ゆみた':
-                msg = data['bye_special']['sunday']['message']
-                img = data['bye_special']['sunday']['image']
-            elif session.get('username') == 'ゆみた':
+        if user_turns >= 10:
+            # 終了メッセージと画像をキャラクターごとに表示
+            today = datetime.now().weekday()
+            username = session.get('username')
+
+            if username == 'ゆみた' and 'ymt' in data['bye_special']:
                 msg = data['bye_special']['ymt']['message']
                 img = data['bye_special']['ymt']['image']
-                    
+            elif today == 6 and 'sunday' in data['bye_special']:  # 日曜は weekday=6
+                msg = data['bye_special']['sunday']['message']
+                img = data['bye_special']['sunday']['image']
+            elif today == 5 and 'saturday' in data['bye_special']:  # 土曜は weekday=5
+                msg = data['bye_special']['saturday']['message']
+                img = data['bye_special']['saturday']['image']
             else:
-                msg = random.choice(data['bye_messages'])
-                img = random.choice(data['bye_images'])
+                msg = random.choice(data.get('bye_messages', ["今日はもう終わったよ！"]))
+                img = random.choice(data.get('bye_images', ["images/bye/byebye07.png"]))
+
             history.append({'sender': 'character', 'type': 'text', 'content': msg})
             history.append({'sender': 'character', 'type': 'image', 'content': img})
             session['history'] = history
