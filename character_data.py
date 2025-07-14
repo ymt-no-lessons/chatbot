@@ -1,3 +1,4 @@
+# キャラクターのデータをここにまとめておくよ
 character_data = {
     'ちいかわ': {
         'images': [
@@ -6,6 +7,11 @@ character_data = {
         ],
         'label': 'ちいかわ',
         'greeting': 'ワァ…',
+        'bye_message': 'エト……',
+        'bye_images': [
+            'images/bye/byebye01.png',
+            'images/bye/byebye07.png'
+        ]
     },
 
     'ハチワレ': {
@@ -15,6 +21,11 @@ character_data = {
         ],
         'label': 'ハチワレ',
         'greeting': '今日はどうだった？',
+        'bye_message': 'エト……',
+        'bye_images': [
+            'images/bye/byebye01.png',
+            'images/bye/byebye07.png'
+        ]
     },
 
     'うさぎ': {
@@ -24,6 +35,11 @@ character_data = {
         ],
         'label': 'うさぎ',
         'greeting': 'ヤハッ！',
+        'bye_message': 'エト……',
+        'bye_images': [
+            'images/bye/byebye01.png',
+            'images/bye/byebye07.png'
+        ]
     },
     'シーサー': {
         'images': [
@@ -32,6 +48,11 @@ character_data = {
         ],
         'label': 'シーサー',
         'greeting': 'お師匠ッ！',
+        'bye_message': 'エト……',
+        'bye_images': [
+            'images/bye/byebye01.png',
+            'images/bye/byebye07.png'
+        ]
     },
     'ラッコ': {
         'images': [
@@ -40,6 +61,11 @@ character_data = {
         ],
         'label': 'ラッコ',
         'greeting': 'いい判断だッ！',
+        'bye_message': '今日は楽しかったなッ',
+        'bye_images': [
+            'images/bye/byebye01.png',
+            'images/bye/byebye07.png'
+        ]
     },
     'くりまんじゅう': {
         'images': [
@@ -48,6 +74,11 @@ character_data = {
         ],
         'label': 'くりまんじゅう',
         'greeting': 'ハァーッ！',
+        'bye_message': 'エト……',
+        'bye_images': [
+            'images/bye/byebye01.png',
+            'images/bye/byebye07.png'
+        ]
     },
     'モモンガ': {
         'images': [
@@ -56,6 +87,11 @@ character_data = {
         ],
         'label': 'モモンガ',
         'greeting': 'ほ～ン',
+        'bye_message': 'エト……',
+        'bye_images': [
+            'images/bye/byebye01.png',
+            'images/bye/byebye07.png'
+        ]
     },
     '古本屋さん（かにちゃん）': {
         'images': [
@@ -64,6 +100,11 @@ character_data = {
         ],
         'label': '古本屋さん（かにちゃん）',
         'greeting': 'フ！',
+        'bye_message': '……！',
+        'bye_images': [
+            'images/bye/byebye01.png',
+            'images/bye/byebye07.png'
+        ]
     },
     '鎧さんたち': {
         'images': [
@@ -72,6 +113,11 @@ character_data = {
         ],
         'label': '鎧さんたち',
         'greeting': '友好型かッ',
+        'bye_message': '今日はありがとう！',
+        'bye_images': [
+            'images/bye/byebye01.png',
+            'images/bye/byebye07.png'
+        ]
     },
     'でかつよ': {
         'images': [
@@ -80,6 +126,11 @@ character_data = {
         ],
         'label': 'でかつよ',
         'greeting': '叶うかな…',
+        'bye_message': 'エト……',
+        'bye_images': [
+            'images/bye/byebye10.png',
+            'images/bye/byebye07.png'
+        ]
     },
     'あのこ': {
         'images': [
@@ -88,6 +139,26 @@ character_data = {
         ],
         'label': 'あのこ',
         'greeting': 'キャッ！',
+        'bye_message': '……',
+        'bye_images': [
+            'images/bye/byebye09.png',
+            'images/bye/byebye07.png'
+        ]
     },
+    
+    'bye_special': {
+        'saturday': {
+            'message': '今日は土曜日だね！またね！',
+            'image': 'images/bye/byebye08.png'
+        },
+            'saturday': {
+            'message': '今日は日曜日だよ！また来てね',
+            'image': 'images/bye/byebye08.png'
+        },
+
+        'ymt': {
+            'message': 'ゆみたちゃん、またね！',
+            'image':  'images/bye/byebye03.png'
+        }
+    }
 }
-# キャラクターのデータをここにまとめておくよ

@@ -1,7 +1,9 @@
 from flask import Flask, render_template, request, redirect, url_for, session, send_file
 from character_data import character_data
+from datetime import datetime
 import io
 import os
+import random
 
 app = Flask(__name__)
 app.secret_key = 'your_secret_key'  # 任意の文字列でOK
@@ -98,16 +100,21 @@ def chat():
         user_turns = sum(1 for m in history if m['sender'] == 'user')
         if user_turns >= 10:
             # ここで終了メッセージ＆画像追加
-            history.append({
-                'sender': 'character',
-                'type': 'text',
-                'content': 'ごめんね、今日は討伐に行かなきゃ…また明日おしゃべりしよう！'
-            })
-            history.append({
-                'sender': 'character',
-                'type': 'image',
-                'content': 'images/chiikawa/chiikawa_stamp_bye.png'  # キャラごとに変えてもOK
-            })
+            if datetime.now().weekday() == 5:  # 土曜の場合
+                msg = data['bye_special']['saturday']['message']
+                img = data['bye_special']['saturday']['image']
+            elif session.get('username') == 'ゆみた':
+                msg = data['bye_special']['sunday']['message']
+                img = data['bye_special']['sunday']['image']
+            elif session.get('username') == 'ゆみた':
+                msg = data['bye_special']['ymt']['message']
+                img = data['bye_special']['ymt']['image']
+                    
+            else:
+                msg = random.choice(data['bye_messages'])
+                img = random.choice(data['bye_images'])
+            history.append({'sender': 'character', 'type': 'text', 'content': msg})
+            history.append({'sender': 'character', 'type': 'image', 'content': img})
             session['history'] = history
             chat_over = True
 
