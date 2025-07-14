@@ -45,20 +45,30 @@ def confirm():
 from chiikawa_reply import reply as chiikawa_reply
 from hachiware_reply import reply as hachiware_reply
 from usagi_reply import reply as usagi_reply
+from kurimanju_reply import reply as kurimanju_reply
+from rakko_reply import reply as rakko_reply
+from sisa_reply import reply as sisa_reply
+from momonga_reply import reply as momonga_reply
 
 # 会話画面
 @app.route('/chat', methods=['GET', 'POST'])
 def chat():
     character = session.get('character', 'ちいかわ')
     data = character_data[character]
-    if 'history' not in session:
+    if 'history' not in session:    
         session['history'] = [
             {'sender': 'character', 'type': 'text', 'content': data['greeting']}
         ]
     history = session['history']
-    if request.method == 'POST':
+
+    # ユーザーの発言回数をカウント
+    user_turns = sum(1 for m in history if m['sender'] == 'user')
+    chat_over = user_turns >= 10
+
+    if request.method == 'POST' and not chat_over:
         user_message = request.form['message']
         history.append({'sender': 'user', 'type': 'text', 'content': user_message})
+
         # キャラごとにリプライ
         if character == "ちいかわ":
             reply_text = chiikawa_reply(user_message)
@@ -66,20 +76,49 @@ def chat():
             reply_text = hachiware_reply(user_message)
         elif character == "うさぎ":
             reply_text = usagi_reply(user_message)
+        elif character == "くりまんじゅう":
+            reply_text = kurimanju_reply(user_message)
+        elif character == "ラッコ":
+            reply_text = rakko_reply(user_message)
+        elif character == "シーサー":
+            reply_text = sisa_reply(user_message)
+        elif character =="モモンガ":
+            reply_text = momonga_reply(user_message)
+
         else:
             reply_text = "うまく返せない…"
-        if isinstance(reply_text, dict):
-            reply_data = reply_text
-        else:
-            reply_data = {'type': 'text', 'content': reply_text}
-        history.append({'sender': 'character', **reply_data})
-        session['history'] = history
+            if isinstance(reply_text, dict):
+                reply_data = reply_text
+            else:
+                reply_data = {'type': 'text', 'content': reply_text}
+            history.append({'sender': 'character', **reply_data})
+            session['history'] = history
+
+        # 10回目のPOST送信直後、終了演出
+        user_turns = sum(1 for m in history if m['sender'] == 'user')
+        if user_turns >= 10:
+            # ここで終了メッセージ＆画像追加
+            history.append({
+                'sender': 'character',
+                'type': 'text',
+                'content': 'ごめんね、今日は討伐に行かなきゃ…また明日おしゃべりしよう！'
+            })
+            history.append({
+                'sender': 'character',
+                'type': 'image',
+                'content': 'images/chiikawa/chiikawa_stamp_bye.png'  # キャラごとに変えてもOK
+            })
+            session['history'] = history
+            chat_over = True
+
         return redirect(url_for('chat'))
+    
     return render_template(
         'chat.html',
         history=history,
         character=data['label'],
         images=data['images'],
+        chat_over=chat_over  # ←htmlで使いますよ
     )
 
 # 履歴ダウンロード

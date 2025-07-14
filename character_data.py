@@ -63,7 +63,7 @@ character_data = {
             'images/momonga/momonga02.png'
         ],
         'label': '古本屋さん（かにちゃん）',
-        'greeting': 'ほ～ン',
+        'greeting': 'フ！',
     },
     '鎧さんたち': {
         'images': [
@@ -87,7 +87,7 @@ character_data = {
             'images/other/anoko_stamp01.png.png'
         ],
         'label': 'あのこ',
-        'greeting': '……',
+        'greeting': 'キャッ！',
     },
 }
 # キャラクターのデータをここにまとめておくよ
