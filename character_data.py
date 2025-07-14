@@ -7,7 +7,7 @@ character_data = {
         ],
         'label': 'ちいかわ',
         'greeting': 'ワァ…',
-        'bye_message': 'エト……',
+        'bye_message': 'ア……',
         'bye_images': [
             'images/bye/byebye01.png',
             'images/bye/byebye07.png'
@@ -21,7 +21,7 @@ character_data = {
         ],
         'label': 'ハチワレ',
         'greeting': '今日はどうだった？',
-        'bye_message': 'エト……',
+        'bye_message': '討伐に行かなきゃいけないんだった！',
         'bye_images': [
             'images/bye/byebye01.png',
             'images/bye/byebye07.png'
@@ -35,7 +35,7 @@ character_data = {
         ],
         'label': 'うさぎ',
         'greeting': 'ヤハッ！',
-        'bye_message': 'エト……',
+        'bye_message': 'プリャ',
         'bye_images': [
             'images/bye/byebye01.png',
             'images/bye/byebye07.png'
@@ -74,7 +74,7 @@ character_data = {
         ],
         'label': 'くりまんじゅう',
         'greeting': 'ハァーッ！',
-        'bye_message': 'エト……',
+        'bye_message': 'ハァ……',
         'bye_images': [
             'images/bye/byebye01.png',
             'images/bye/byebye07.png'
@@ -87,7 +87,7 @@ character_data = {
         ],
         'label': 'モモンガ',
         'greeting': 'ほ～ン',
-        'bye_message': 'エト……',
+        'bye_message': '帰りたいんだよッ',
         'bye_images': [
             'images/bye/byebye01.png',
             'images/bye/byebye07.png'
@@ -126,7 +126,7 @@ character_data = {
         ],
         'label': 'でかつよ',
         'greeting': '叶うかな…',
-        'bye_message': 'エト……',
+        'bye_message': 'また明日も……',
         'bye_images': [
             'images/bye/byebye10.png',
             'images/bye/byebye07.png'
@@ -151,14 +151,22 @@ character_data = {
             'message': '今日は土曜日だね！またね！',
             'image': 'images/bye/byebye08.png'
         },
-            'saturday': {
+        'sunday': {
             'message': '今日は日曜日だよ！また来てね',
             'image': 'images/bye/byebye08.png'
         },
-
         'ymt': {
             'message': 'ゆみたちゃん、またね！',
             'image':  'images/bye/byebye03.png'
         }
-    }
+    },
+    'bye_messages': [
+        'そろそろ討伐の時間…また明日ネ！',
+        '今日はここまでッッッ！',
+        'おやすみィィィ…'
+    ],
+    'bye_images': [
+        'images/chiikawa/chiikawa_stamp_bye.png',
+        'images/chiikawa/chiikawa_stamp_sleep.png'
+    ]
 }
