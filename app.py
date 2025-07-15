@@ -55,7 +55,10 @@ from momonga_reply import reply as momonga_reply
 # 会話画面
 @app.route('/chat', methods=['GET', 'POST'])
 def chat():
-    character = session.get('character', 'ちいかわ')
+    character = session.get('character')
+    if not character:
+        # キャラ未設定ならトップへリダイレクトでもいい
+        return redirect(url_for('select'))
     data = character_data[character]
 
     # セッション初期化
@@ -172,7 +175,7 @@ def reset():
     session.clear()
     return redirect(url_for('index'))
 
-# 確認画面
+# リロードするか確認画面
 @app.route('/reset_confirm', methods=['GET', 'POST'])
 def reset_confirm():
     if request.method == 'POST':
