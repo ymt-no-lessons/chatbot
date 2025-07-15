@@ -84,6 +84,14 @@ def chat():
             reply_data = hachiware_reply(user_message)
         elif character == "うさぎ":
             reply_data = usagi_reply(user_message)
+        elif character == "くりまんじゅう":
+            reply_data = kurimanju_reply(user_message)
+        elif character == "ラッコ":
+            reply_data = rakko_reply(user_message)
+        elif character == "シーサー":
+            reply_data = sisa_reply(user_message)
+        elif character =="モモンガ":
+            reply_data = momonga_reply(user_message)
         else:
             reply_data = {'type': 'text', 'content': "うまく返せない…"}
 
