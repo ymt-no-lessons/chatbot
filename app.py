@@ -1,12 +1,12 @@
 from flask import Flask, render_template, request, redirect, url_for, session, send_file
 from character_data import character_data
-from datetime import datetime
-import io
-import os
 import random
+from datetime import datetime
+import os
+import io
 
 app = Flask(__name__)
-app.secret_key = 'your_secret_key'  # 任意の文字列でOK
+app.secret_key = 'your_secret_key'
 
 # 1. 名前入力画面
 @app.route('/', methods=['GET', 'POST'])
@@ -57,80 +57,78 @@ from momonga_reply import reply as momonga_reply
 def chat():
     character = session.get('character', 'ちいかわ')
     data = character_data[character]
-    if 'history' not in session:    
-        session['history'] = [
-            {'sender': 'character', 'type': 'text', 'content': data['greeting']}
-        ]
-    history = session['history']
 
-    # ユーザーの発言回数をカウント
+    # セッション初期化
+    if 'history' not in session:
+        session['history'] = [{
+            'sender': 'character',
+            'type': 'text',
+            'content': data.get('greeting', 'こんにちは！')
+        }]
+        session['chat_over'] = False
+
+    history = session['history']
+    chat_over = session.get('chat_over', False)
+
+    # ユーザーの発言回数
     user_turns = sum(1 for m in history if m['sender'] == 'user')
-    chat_over = user_turns >= 10
 
     if request.method == 'POST' and not chat_over:
         user_message = request.form['message']
         history.append({'sender': 'user', 'type': 'text', 'content': user_message})
 
-        # キャラごとにリプライ
+        # キャラごとのreply
         if character == "ちいかわ":
-            reply_text = chiikawa_reply(user_message)
+            reply_data = chiikawa_reply(user_message)
         elif character == "ハチワレ":
-            reply_text = hachiware_reply(user_message)
+            reply_data = hachiware_reply(user_message)
         elif character == "うさぎ":
-            reply_text = usagi_reply(user_message)
-        elif character == "くりまんじゅう":
-            reply_text = kurimanju_reply(user_message)
-        elif character == "ラッコ":
-            reply_text = rakko_reply(user_message)
-        elif character == "シーサー":
-            reply_text = sisa_reply(user_message)
-        elif character =="モモンガ":
-            reply_text = momonga_reply(user_message)
-
+            reply_data = usagi_reply(user_message)
         else:
-            reply_text = "うまく返せない…"
-            if isinstance(reply_text, dict):
-                reply_data = reply_text
-            else:
-                reply_data = {'type': 'text', 'content': reply_text}
-            history.append({'sender': 'character', **reply_data})
-            session['history'] = history
+            reply_data = {'type': 'text', 'content': "うまく返せない…"}
 
-        # 10回目のPOST送信直後、終了演出
+        if not isinstance(reply_data, dict):
+            reply_data = {'type': 'text', 'content': reply_data}
+
+        history.append({'sender': 'character', **reply_data})
+
+        # 10回で終了
         user_turns = sum(1 for m in history if m['sender'] == 'user')
-            # ここで終了メッセージ＆画像追加
         if user_turns >= 10:
-            # 終了メッセージと画像をキャラクターごとに表示
+            # 終了メッセージ&画像（キャラ分岐サンプル）
             today = datetime.now().weekday()
-            username = session.get('username')
+            username = session.get('username', '')
 
-            if username == 'ゆみた' and 'ymt' in data['bye_special']:
-                msg = data['bye_special']['ymt']['message']
-                img = data['bye_special']['ymt']['image']
-            elif today == 6 and 'sunday' in data['bye_special']:  # 日曜は weekday=6
-                msg = data['bye_special']['sunday']['message']
-                img = data['bye_special']['sunday']['image']
-            elif today == 5 and 'saturday' in data['bye_special']:  # 土曜は weekday=5
-                msg = data['bye_special']['saturday']['message']
-                img = data['bye_special']['saturday']['image']
-            else:
-                msg = random.choice(data.get('bye_messages', ["今日はもう終わったよ！"]))
-                img = random.choice(data.get('bye_images', ["images/bye/byebye07.png"]))
+            bye_message = data.get('bye_message', "今日はここまでだよ、バイバイ！")
+            bye_image = data.get('bye_image', "images/chiikawa/chiikawa_stamp_bye.png")
 
-            history.append({'sender': 'character', 'type': 'text', 'content': msg})
-            history.append({'sender': 'character', 'type': 'image', 'content': img})
-            session['history'] = history
-            chat_over = True
+            # サンプル：土曜・ユーザー名・通常
+            if username == 'ゆみた' and 'bye_special' in data and 'ymt' in data['bye_special']:
+                bye_message = data['bye_special']['ymt']['message']
+                bye_image = data['bye_special']['ymt']['image']
+            elif today == 6 and 'bye_special' in data and 'sunday' in data['bye_special']:
+                bye_message = data['bye_special']['sunday']['message']
+                bye_image = data['bye_special']['sunday']['image']
+            elif today == 5 and 'bye_special' in data and 'saturday' in data['bye_special']:
+                bye_message = data['bye_special']['saturday']['message']
+                bye_image = data['bye_special']['saturday']['image']
 
+            history.append({'sender': 'character', 'type': 'text', 'content': bye_message})
+            history.append({'sender': 'character', 'type': 'image', 'content': bye_image})
+            session['chat_over'] = True
+
+        session['history'] = history
         return redirect(url_for('chat'))
-    
+
+    chat_over = session.get('chat_over', False)
     return render_template(
         'chat.html',
         history=history,
         character=data['label'],
         images=data['images'],
-        chat_over=chat_over  # ←htmlで使いますよ
+        chat_over=chat_over
     )
+
 
 # 履歴ダウンロード
 @app.route('/download_history', methods=['GET', 'POST'])
