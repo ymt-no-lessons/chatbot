@@ -27,7 +27,7 @@ def reply(user_message):
     
     # 通常パターン（ランダム返し）
     patterns = [
-        {"type": "text", "content": "いい返しだッ"}
+        {"type": "text", "content": "いい返しだッ"},
         {"type": "image", "content": "images/rakko/rakko_stamp01.png"},
         {"type": "image", "content": "images/rakko/rakko_stamp02.png"},
         {"type": "image", "content": "images/rakko/rakko_stamp03.png"},
