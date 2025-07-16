@@ -179,6 +179,8 @@ def reset():
 @app.route('/reset_confirm', methods=['GET', 'POST'])
 def reset_confirm():
     if request.method == 'POST':
+        print(request.form)  # ← 追加してみて！
+
         action = request.form['action']
         if action == 'はい':
             return redirect(url_for('download_history'))
