@@ -111,7 +111,7 @@ def chat():
             username = session.get('username', '')
 
             bye_message = data.get('bye_message', "今日はここまでだよ、バイバイ！")
-            bye_image = data.get('bye_image', "images/chiikawa/chiikawa_stamp_bye.png")
+            bye_image = data.get('bye_image', "images/bye/byebye01.png")
 
             # サンプル：土曜・ユーザー名・通常
             if username == 'ゆみた' and 'bye_special' in data and 'ymt' in data['bye_special']:
