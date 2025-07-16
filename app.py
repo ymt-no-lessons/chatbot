@@ -140,7 +140,6 @@ def chat():
         chat_over=chat_over
     )
 
-
 # 履歴ダウンロード
 @app.route('/download_history', methods=['GET', 'POST'])
 def download_history():
@@ -163,7 +162,6 @@ def download_history():
             download_name='chat_history.txt',
             mimetype='text/plain'
         )
-
     # ② GETなら…ダウンロード画面
     return render_template('download_done.html')
 
@@ -177,8 +175,6 @@ def reset():
 @app.route('/reset_confirm', methods=['GET', 'POST'])
 def reset_confirm():
     if request.method == 'POST':
-        print(request.form)  # ← 追加してみて！
-
         action = request.form['action']
         if action == 'はい':
             return redirect(url_for('download_history'))
