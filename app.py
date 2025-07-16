@@ -145,28 +145,26 @@ def chat():
 @app.route('/download_history', methods=['GET', 'POST'])
 def download_history():
     history = session.get('history', [])
+    # テキスト化（画像はaltテキストや説明に置き換える例）
+    lines = []
+    for m in history:
+        sender = "あなた" if m['sender'] == "user" else "キャラ"
+        if m['type'] == 'image':
+            lines.append(f"{sender}: [画像: {m['content']}]")
+        else:
+            lines.append(f"{sender}: {m['content']}")
+    text = "\n".join(lines)
+
+    # ① POSTなら…即ファイルダウンロードさせる！
     if request.method == 'POST':
-        # 履歴をテキスト化
-        lines = []
-        for msg in history:
-            sender = "あなた" if msg['sender'] == "user" else "キャラ"
-            content = msg.get('content') or msg.get('text')
-            if msg.get('type') == 'image':
-                line = f"{sender}: [スタンプ: {content}]"
-            else:
-                line = f"{sender}: {content}"
-            lines.append(line)
-        text_data = "\n".join(lines)
-        file_data = io.BytesIO()
-        file_data.write(text_data.encode('utf-8'))
-        file_data.seek(0)
-        session.clear()
         return send_file(
-            file_data,
-            mimetype='text/plain',
+            io.BytesIO(text.encode('utf-8')),
             as_attachment=True,
-            download_name='chat_history.txt'
+            download_name='chat_history.txt',
+            mimetype='text/plain'
         )
+
+    # ② GETなら…ダウンロード画面
     return render_template('download_done.html')
 
 # リロード（完全リセット）
