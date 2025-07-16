@@ -6,7 +6,16 @@ def check_special_words(user_message):
         return {"type": "image", "content": "images/hachiware/hachiware_stamp_sleep.png"}
     if "ありがとう" in user_message:
         return {"type": "text", "content": "どういたしましてッ！"}
-    # …ここに増やしていく
+    if "応援" in user_message or "がんば" in user_message or "頑張" in user_message:
+        return {"type": "image", "content": "images/hachiware/hachiware_stamp08.png"}
+    if "喜び" in user_message or "絶望" in user_message or "穴" in user_message:
+        return {"type": "image", "content": "images/hachiware/hachiware_stamp11.png"}
+    if "チキ" in user_message or "ちき" in user_message or "爪" in user_message:
+        return {"type": "image", "content": "images/hachiware/hachiware_stamp12.png"}
+    if "お金" in user_message or "報酬" in user_message:
+        return {"type": "image", "content": "images/hachiware/hachiware_stamp13.png"}
+    if "討伐" in user_message or "戦" in user_message or "強" in user_message:
+        return {"type": "image", "content": "images/hachiware/hachiware_stamp14.png"}
     if "すいか" in user_message:
         return {"type": "image", "content": "images/other/suikawari.png"}
     if "水" in user_message or "暑" in user_message or "熱中症" in user_message:
@@ -70,15 +79,10 @@ def reply(user_message):
         "！",
         "なんとかなれーッ！",
         "うんうん…",
-        "強くなりたいな…",
+        "エーッ",
         "したいのッ？共有ッ！",
-        "がんばって…",
-        {"type": "image", "content": "images/hachiware/hachiware_stamp07.png"},
         {"type": "image", "content": "images/hachiware/hachiware_stamp08.png"},
         {"type": "image", "content": "images/hachiware/hachiware_stamp09.png"},
         {"type": "image", "content": "images/hachiware/hachiware_stamp10.png"},
-        {"type": "image", "content": "images/hachiware/hachiware_stamp11.png"},
-        {"type": "image", "content": "images/hachiware/hachiware_stamp12.png"},
-
     ]
     return random.choice(aizuchi)

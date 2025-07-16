@@ -6,8 +6,7 @@ def check_special_words(user_message):
         return {"type": "image", "content": "images/momonga/momonga_stamp01.png"}
     if "うまみ" in user_message or "うま味" in user_message or "旨味" in user_message:
         return {"type": "image", "content": "images/momonga/momonga_stamp_umami.png"}    
-    # …ここに増やしていく
-    if "水" in user_message or "暑" in user_message or "熱中症" in user_message:
+    if "水" in user_message or "暑" in user_message or "熱" in user_message:
         return {"type": "image", "content": "images/momonga/momonga_stamp05.png"}
     if "風呂" in user_message or "洗う" in user_message or "臭い" in user_message:
         return {"type": "image", "content": "images/momonga/momonga_stamp07.png"}  

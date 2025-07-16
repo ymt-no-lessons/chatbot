@@ -3,21 +3,13 @@ import re
 
 
 def check_special_words(user_message):
-
-    if "いや" in user_message or "イヤ" in user_message:
-        return {"type": "image", "content": "images/sisa/sisa_stamp_iya.png"}
-    if "かなしい" in user_message or "悲しい" in user_message:
-        return {"type": "text", "content": "ワァ…"}
-    if "がんばって" in user_message or "頑張って" in user_message or "がんばれ" in user_message or "頑張れ" in user_message:
+    if "タッパー" in user_message or "おかず" in user_message:
         return {"type": "image", "content": "images/sisa/sisa_stamp06.png"}
-    if "口だけは" in user_message or "出して" in user_message:
+    if "郎" in user_message or "ラーメン" in user_message:
+        return {"type": "image", "content": "images/sisa/sisa_stamp07.png"}
+    if "自由" in user_message or "明日" in user_message:
         return {"type": "image", "content": "images/sisa/sisa_stamp08.png"}
-    if "えらい" in user_message or "エライ" in user_message or "すごい" in user_message or "良いね" in user_message or "イイネ" in user_message:
-        return {"type": "image", "content": "images/sisa/sisa_stamp09.png"}
-    if "すいか" in user_message:
-        return {"type": "image", "content": "images/other/suikawari.png"}
-    if "水" in user_message or "暑" in user_message or "熱中症" in user_message:
-        return {"type": "image", "content": "images/other/water01.png"}
+
     # ヒットしなければNone
     return None
 
@@ -53,16 +45,11 @@ def reply(user_message):
     
     # 通常パターン（ランダム返し）
     patterns = [
-        {"type": "text", "content": "ワァ…"},
-        {"type": "text", "content": user_message[:2] + "…"},
-        {"type": "text", "content": user_message[-1] + "…"},
-        {"type": "text", "content": user_message[-2:] + "…"},
+        {"type": "text", "content": "うれシーサー"},
         {"type": "image", "content": "images/sisa/sisa_stamp01.png"},
         {"type": "image", "content": "images/sisa/sisa_stamp02.png"},
         {"type": "image", "content": "images/sisa/sisa_stamp03.png"},
         {"type": "image", "content": "images/sisa/sisa_stamp04.png"},
         {"type": "image", "content": "images/sisa/sisa_stamp05.png"}, 
-        {"type": "image", "content": "images/sisa/sisa_stamp07.png"},      
-        {"type": "image", "content": "images/sisa/sisa_stamp10.png"},
     ]
     return random.choice(patterns)
