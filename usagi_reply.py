@@ -12,9 +12,9 @@ def check_special_words(user_message):
     if "夢" in user_message or "悪夢" in user_message or "アクム" in user_message or "あくむ" in user_message:
         return {"type": "image", "content": "images/usagi/nightmare.png"}
     if "天気" in user_message or "てんき" in user_message or "てるてる" in user_message or "坊主" in user_message or "ぼうず" in user_message:
-        return {"type": "image", "content": "images/usagi/usagi_stamp08.png"}
-    if "雨" in user_message:
         return {"type": "image", "content": "images/usagi/usagi_stamp_urayahabouzu.png"}
+    if "雨" in user_message:
+        return {"type": "image", "content": "images/usagi/usagi_stamp08.png"}
     if "すいか" in user_message:
         return {"type": "image", "content": "images/other/suikawari.png"}
     if "水" in user_message or "暑" in user_message or "熱中症" in user_message:
