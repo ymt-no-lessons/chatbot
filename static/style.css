@@ -1,51 +1,49 @@
+/* 全体リセット＆フォント */
 body {
-    font-family: 'Segoe UI', 'Meiryo', sans-serif;
-    text-align: center;
-    padding: 40px;
-    background-color: #f5f5f5;
+    font-family: 'Noto Sans JP', 'Arial', sans-serif;
+    background: #f5f7fa;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
 }
-  
-.chat-box {
-    width: 350px; 
-    margin: 30px auto; 
-    border: 1px solid #ccc; 
-    border-radius: 10px; 
-    padding: 20px;
+
+/* チャットボックス */
+.chat-box, .chat-area {
+    max-width: 450px;
+    margin: 0 auto;
+    background: #fff;
+    border-radius: 20px;
+    box-shadow: 0 4px 24px 0 rgba(80,100,120,0.12);
+    padding: 12px 0 16px 0;
 }
-.character-info { 
-    text-align: center;
+
+/* キャラ画像と名前 */
+.character-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+    padding: 10px 16px 0 16px;
 }
-.message { 
-    background: #f0f0f0; 
-    border-radius: 10px; 
-    display: inline-block; 
-    padding: 10px; 
-    margin-top: 20px;
-}
-.character-img { 
-    width: 50%;
+.character-img {
+    width: 56px;
+    height: 56px;
     border-radius: 50%;
-    margin: 0 8px;
+    object-fit: cover;
+    background: #eee;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.07);
 }
 
-/*チャットUI　LINE風*/
-.chat-area {
-  max-width: 480px;
-  margin: 32px auto;
-  background: #fff;
-  border-radius: 20px;
-  box-shadow: 0 4px 20px #0002;
-  padding: 16px;
-}
-
+/* メッセージリスト */
 .message-list {
     list-style: none;
-    padding: 0;
+    margin: 0;
+    padding: 0 10px 0 10px;
 }
 .message {
     display: flex;
     align-items: flex-end;
-    margin-bottom: 14px;
+    margin-bottom: 12px;
 }
 .message.left {
     flex-direction: row;
@@ -54,36 +52,115 @@ body {
     flex-direction: row-reverse;
 }
 .icon {
-    width: 44px;
-    height: 44px;
-    border-radius: 50%;
+    width: 36px;
+    height: 36px;
     margin: 0 8px;
+    border-radius: 50%;
+    background: #fafafa;
+    object-fit: cover;
 }
 .bubble {
+    max-width: 75vw;
+    min-width: 44px;
     padding: 10px 16px;
-    border-radius: 16px;
-    background: #e0e0e0;
-    max-width: 70%;
+    border-radius: 18px;
+    font-size: 1rem;
+    line-height: 1.5;
+    box-shadow: 0 2px 12px 0 rgba(80,100,120,0.07);
+    word-break: break-word;
+}
+.message.left .bubble {
+    background: #e8f0fe;
+    color: #333;
+    border-bottom-left-radius: 6px;
 }
 .message.right .bubble {
-    background: #b2e6ff;
+    background: #c2e9fa;
+    color: #333;
+    border-bottom-right-radius: 6px;
 }
+
+/* 画像スタンプ調整 */
+.bubble img {
+    width: 80px;
+    height: auto;
+    vertical-align: middle;
+    border-radius: 12px;
+    margin: 2px 0;
+}
+
+/* 入力フォーム行 */
 .input-row {
     display: flex;
-    margin-top: 16px;
+    padding: 8px 12px 0 12px;
+    gap: 6px;
 }
-input[type="text"] {
+.input-row input[type="text"] {
     flex: 1;
-    padding: 8px;
-    border-radius: 8px;
-    border: 1px solid #ccc;
+    font-size: 1rem;
+    border-radius: 12px;
+    border: 1px solid #d0d7de;
+    padding: 8px 12px;
+    outline: none;
+    background: #f9fafb;
 }
-button {
-    margin: 10px;
-    padding: 8px 16px;
-    border-radius: 8px;
+.input-row button {
+    font-size: 1rem;
+    border-radius: 12px;
     border: none;
-    background: #3dc3f4;
+    background: #46c5d2;
     color: #fff;
+    padding: 8px 16px;
+    cursor: pointer;
+    font-weight: 700;
+    box-shadow: 0 2px 8px rgba(70,197,210,0.07);
+    transition: background 0.2s;
+}
+.input-row button:hover {
+    background: #3ea7b3;
+}
+
+/* 履歴/リロードボタン */
+form[action*="download"], form[action*="reset"] {
+    display: flex;
+    justify-content: center;
+    margin: 10px 0 0 0;
+}
+form[action*="download"] button, form[action*="reset"] button {
+    width: 90vw;
+    max-width: 430px;
+    border-radius: 16px;
+    margin: 6px 0;
+    font-size: 1.06em;
+    padding: 10px 0;
+    background: #f0c649;
+    color: #665300;
+    border: none;
     font-weight: bold;
+}
+form[action*="download"] button:hover,
+form[action*="reset"] button:hover {
+    background: #ffe18f;
+}
+
+/* ---- スマホ対応 ---- */
+@media (max-width: 600px) {
+    .chat-box, .chat-area {
+        max-width: 99vw;
+        border-radius: 0;
+        box-shadow: none;
+        padding: 4px 0 10px 0;
+    }
+    .character-img, .icon {
+        width: 42px;
+        height: 42px;
+    }
+    .bubble {
+        font-size: 1.09em;
+        padding: 11px 13px;
+    }
+    form[action*="download"] button, form[action*="reset"] button {
+        font-size: 1.13em;
+        max-width: 99vw;
+    }
 }
