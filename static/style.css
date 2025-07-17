@@ -182,6 +182,7 @@ form[action*="reset"] button:hover {
 @media (max-width: 600px) {
     .chat-box, .chat-area {
         max-width: 99vw;
+        width: 90%;
         border-radius: 0;
         box-shadow: none;
         padding: 4px 0 10px 0;
