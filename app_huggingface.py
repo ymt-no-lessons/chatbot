@@ -7,7 +7,7 @@ app = Flask(__name__)
 # Hugging Face APIの設定
 API_URL = "https://api-inference.huggingface.co/models/meta-llama/Meta-Llama-3-8B-Instruct"
 # ★安全管理するなら .env に保存推奨！（ここでは簡易に直書き例）
-HUGGINGFACE_API_KEY = "hf_xxxxxxxxxxxxxxxxxxxxxxxx"  # ←自分のトークンに差し替えて！
+HUGGINGFACE_API_KEY = "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"  # ←自分のトークンに差し替えて！
 
 HEADERS = {
     "Authorization": f"Bearer {HUGGINGFACE_API_KEY}"
