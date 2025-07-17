@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>ちいかわチャットボットだよ</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="chat-box">
+        <div class="character-info">
+            <img class="character-img" src="{{ url_for('static', filename=images[0]) }}" alt="{{ character }}" width="200">
+            <h2>{{ character }}とおしゃべり</h2>
+        </div>
+    </div>
+
+    <div class="chat-area">
+        <ul class="message-list">
+        {% for message in history %}
+            <li class="message {% if message.sender == 'character' %}left{% else %}right{% endif %}">
+                {% if message.sender == 'character' %}
+                    <img class="icon" src="{{ url_for('static', filename=images[0]) }}">
+                {% endif %}
+                <div class="bubble">
+                    {% if message.type == 'image' %}
+                        <img src="{{ url_for('static', filename=message.content) }}" width="100" alt="スタンプ">
+                    {% else %}
+                        {{ message.content or message.text }}
+                    {% endif %}
+                </div>
+                {% if message.sender == 'user' %}
+                    <img class="icon" src="{{ url_for('static', filename=session.get('user_icon', 'user_icon01.png')) }}">
+                {% endif %}
+            </li>
+        {% endfor %}
+        </ul>
+
+        {% if not chat_over %}
+            <form method="post" class="input-row">
+                <input type="text" name="message" placeholder="メッセージを入力" autocomplete="off">
+                <button type="submit">送信</button>
+            </form>
+            <form action="/download_history" method="post">
+                <button type="submit">チャット履歴をダウンロードする</button>
+            </form>
+            <form action="/reset_confirm" method="get">
+                <button type="submit">初めに戻ろうかな</button>
+            </form>
+        {% else %}
+            <div class="center"><b>来てくれてありがとう！また来てね！</b></div>
+            <form action="/reset_confirm" method="get">
+                <button type="submit">初めに戻るよ</button>
+            </form>
+        {% endif %}
+    </div>
+</body>
+</html>
