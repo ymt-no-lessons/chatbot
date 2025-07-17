@@ -2,8 +2,9 @@
 body {
     font-family: 'Noto Sans JP', 'Arial', sans-serif;
     background: #f5f7fa;
-    margin: 0;
-    padding: 0;
+    text-align: center;
+    margin: 0 auto;
+    padding: 40px;
     min-height: 100vh;
 }
 
@@ -32,6 +33,40 @@ body {
     object-fit: cover;
     background: #eee;
     box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+}
+
+.character-select-row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+    margin: 16px 0;
+}
+.character-select-row button {
+    background: #fff;
+    border: 2px solid #c7e7f5;
+    border-radius: 14px;
+    padding: 8px 10px 3px 10px;
+    text-align: center;
+    font-size: 1.05em;
+    font-weight: bold;
+    cursor: pointer;
+    transition: box-shadow 0.15s, border 0.15s;
+    box-shadow: 0 2px 6px rgba(70,197,210,0.10);
+    width: 95px;
+}
+.character-select-row button:hover, .character-select-row button:focus {
+    background: #f3fbfe;
+    border: 2.5px solid #46c5d2;
+}
+.icon-btn {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    object-fit: cover;
+    display: block;
+    margin: 0 auto 2px auto;
+    box-shadow: 0 1px 6px rgba(80,100,120,0.10);
 }
 
 /* メッセージリスト */
@@ -155,6 +190,11 @@ form[action*="reset"] button:hover {
         width: 42px;
         height: 42px;
     }
+
+
+    .character-select-row button { width: 30vw; min-width: 76px; }
+    .icon-btn { width: 40px; height: 40px; }
+
     .bubble {
         font-size: 1.09em;
         padding: 11px 13px;
