@@ -2,56 +2,73 @@
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>ちいかわチャットボットだよ</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <title>ちいかわAIチャットボット</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <style>
+        body { font-family: "Yu Gothic", sans-serif; background: #f7f6f4; margin: 0; }
+        .chat-container { max-width: 480px; margin: 2em auto; background: #fff; border-radius: 16px; box-shadow: 0 2px 8px #ccc; padding: 2em; }
+        .msg { margin-bottom: 1em; }
+        .user { text-align: right; color: #555; }
+        .ai { text-align: left; color: #2186c4; }
+        .stamp { width: 80px; }
+        form { display: flex; gap: 0.5em; margin-top: 2em; }
+        input[type="text"] { flex: 1; font-size: 1.2em; padding: 0.5em; border-radius: 8px; border: 1px solid #ccc; }
+        button { padding: 0.5em 1em; border-radius: 8px; border: none; background: #2186c4; color: #fff; font-size: 1.1em; }
+    </style>
 </head>
 <body>
-    <div class="chat-box">
-        <div class="character-info">
-            <img class="character-img" src="{{ url_for('static', filename=images[0]) }}" alt="{{ character }}" width="200">
-            <h2>{{ character }}とおしゃべり</h2>
+    <div class="chat-container">
+        <h2>ちいかわAIチャットボット</h2>
+        <div id="chat-area">
+            <!-- メッセージ表示ここに追加 -->
         </div>
+        <form id="chat-form" autocomplete="off">
+            <input type="text" id="message" placeholder="メッセージを入力…" required>
+            <button type="submit">送信</button>
+        </form>
     </div>
+    <script>
+        const chatArea = document.getElementById('chat-area');
+        const chatForm = document.getElementById('chat-form');
+        const messageInput = document.getElementById('message');
 
-    <div class="chat-area">
-        <ul class="message-list">
-        {% for message in history %}
-            <li class="message {% if message.sender == 'character' %}left{% else %}right{% endif %}">
-                {% if message.sender == 'character' %}
-                    <img class="icon" src="{{ url_for('static', filename=images[0]) }}">
-                {% endif %}
-                <div class="bubble">
-                    {% if message.type == 'image' %}
-                        <img src="{{ url_for('static', filename=message.content) }}" width="100" alt="スタンプ">
-                    {% else %}
-                        {{ message.content or message.text }}
-                    {% endif %}
-                </div>
-                {% if message.sender == 'user' %}
-                    <img class="icon" src="{{ url_for('static', filename=session.get('user_icon', 'user_icon01.png')) }}">
-                {% endif %}
-            </li>
-        {% endfor %}
-        </ul>
+        // 履歴保存用（シンプルなJS配列だけど後で拡張可！）
+        let history = [];
 
-        {% if not chat_over %}
-            <form method="post" class="input-row">
-                <input type="text" name="message" placeholder="メッセージを入力" autocomplete="off">
-                <button type="submit">送信</button>
-            </form>
-            <form action="/download_history" method="post">
-                <button type="submit">チャット履歴をダウンロードする</button>
-            </form>
-            <form action="/reset_confirm" method="get">
-                <button type="submit">初めに戻ろうかな</button>
-            </form>
-        {% else %}
-            <div class="center"><b>来てくれてありがとう！また来てね！</b></div>
-            <form action="/reset_confirm" method="get">
-                <button type="submit">初めに戻るよ</button>
-            </form>
-        {% endif %}
-    </div>
+        chatForm.onsubmit = async (e) => {
+            e.preventDefault();
+            const userMsg = messageInput.value.trim();
+            if (!userMsg) return;
+            // ユーザーメッセージ表示
+            addMessage(userMsg, 'user');
+            messageInput.value = '';
+
+            // AIに送信
+            const res = await fetch('/ask', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                body: 'message=' + encodeURIComponent(userMsg)
+            });
+            const data = await res.json();
+            let aiMsg = data.reply;
+
+            // スタンプ指示の判定と画像表示例
+            if (aiMsg.includes(':stamp-muri:')) {
+                aiMsg = aiMsg.replace(':stamp-muri:', '<img src="/static/images/chiikawa/muri.png" alt="むり" class="stamp">');
+            }
+            // 他にも :stamp-happy: などに対応したい場合はここで追加
+
+            addMessage(aiMsg, 'ai');
+        };
+
+        // メッセージ追加関数
+        function addMessage(text, sender) {
+            const div = document.createElement('div');
+            div.className = 'msg ' + sender;
+            div.innerHTML = text;
+            chatArea.appendChild(div);
+            chatArea.scrollTop = chatArea.scrollHeight;
+        }
+    </script>
 </body>
 </html>
