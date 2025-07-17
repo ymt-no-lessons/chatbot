@@ -1,13 +1,14 @@
 import os
 from flask import Flask, request, render_template, jsonify
 import requests
+from dotenv import load_dotenv
+import os
 
 app = Flask(__name__)
 
 # Hugging Face APIの設定
-API_URL = "https://api-inference.huggingface.co/models/meta-llama/Meta-Llama-3-8B-Instruct"
-# ★安全管理するなら .env に保存推奨！（ここでは簡易に直書き例）
-HUGGINGFACE_API_KEY = "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"  # ←自分のトークンに差し替えて！
+load_dotenv()
+HUGGINGFACE_API_KEY = os.getenv("HUGGINGFACE_API_KEY")
 
 HEADERS = {
     "Authorization": f"Bearer {HUGGINGFACE_API_KEY}"
