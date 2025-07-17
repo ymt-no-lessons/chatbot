@@ -20,3 +20,4 @@ def ask():
     return jsonify({"reply": ai_reply})
 
 # index.htmlなどUI部分は省略
+if __name__ == "__main__": app.run() 
