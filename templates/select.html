@@ -8,13 +8,36 @@
 </head>
 <body>
     <h2>おしゃべりしたいキャラクターを選んでね</h2>
-    <form method="post">
-        <button type="submit" name="character" value="ちいかわ">ちいかわ</button>
-        <button type="submit" name="character" value="ハチワレ">ハチワレ</button>
-        <button type="submit" name="character" value="うさぎ">うさぎ</button>
-        <button type="submit" name="character" value="くりまんじゅう">くりまんじゅう</button>
-        <button type="submit" name="character" value="ラッコ">ラッコ</button>
-        <button type="submit" name="character" value="シーサー">シーサー</button>        <button type="submit" name="character" value="モモンガ">モモンガ</button>
+    <form method="post" class="character-select-row">
+    <button type="submit" name="character" value="ちいかわ">
+        <img src="{{ url_for('static', filename='images/chiikawa/chiikawa01.png') }}" alt="ちいかわ" class="icon-btn"><br>
+        ちいかわ
+    </button>
+    <button type="submit" name="character" value="ハチワレ">
+        <img src="{{ url_for('static', filename='images/hachiware/hachiware01.png') }}" alt="ハチワレ" class="icon-btn"><br>
+        ハチワレ
+    </button>
+    <button type="submit" name="character" value="うさぎ">
+        <img src="{{ url_for('static', filename='images/usagi/usagi01.png') }}" alt="うさぎ" class="icon-btn"><br>
+        うさぎ
+    </button>
+    <button type="submit" name="character" value="くりまんじゅう">
+        <img src="{{ url_for('static', filename='images/kurimanju/kurimanju01.png') }}" alt="くりまんじゅう" class="icon-btn"><br>
+        くりまんじゅう
+    </button>
+    <button type="submit" name="character" value="ラッコ">
+        <img src="{{ url_for('static', filename='images/rakko/rakko01.png') }}" alt="ラッコ" class="icon-btn"><br>
+        ラッコ
+    </button>
+    <button type="submit" name="character" value="シーサー">
+        <img src="{{ url_for('static', filename='images/sisa/sisa01.png') }}" alt="シーサー" class="icon-btn"><br>
+        シーサー
+    </button>
+    <button type="submit" name="character" value="モモンガ">
+        <img src="{{ url_for('static', filename='images/momonga/momonga01.png') }}" alt="モモンガ" class="icon-btn"><br>
+        モモンガ
+    </button>
     </form>
+
 </body>
 </html>
