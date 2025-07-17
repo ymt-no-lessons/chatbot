@@ -4,7 +4,7 @@ body {
     background: #f5f7fa;
     text-align: center;
     margin: 0 auto;
-    padding: 40px;
+    padding: 5px;
     min-height: 100vh;
 }
 
@@ -181,8 +181,7 @@ form[action*="reset"] button:hover {
 /* ---- スマホ対応 ---- */
 @media (max-width: 600px) {
     .chat-box, .chat-area {
-        max-width: 99vw;
-        width: 90%;
+        /*max-width: 99vw;*/
         border-radius: 0;
         box-shadow: none;
         padding: 4px 0 10px 0;
