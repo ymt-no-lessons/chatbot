@@ -9,40 +9,37 @@
 
 </head>
 <body>
-    <h2>名前を入力してね</h2>
-    <form method="post" class="input-row">
-        <input type="text" name="username" required>
-    </form>
-  <div>
-    <form method="post" class="character-select-row">
-        <button type="submit" name="icon" value="user_icon01.png" checked>
-        <img src="{{ url_for('static', filename='icon/user_icon01.png') }}" alt="犬アイコン">
-        </button>
-
-        <button type="submit" name="icon" value="user_icon02.png">
-        <img src="{{ url_for('static', filename='icon/user_icon02.png') }}" alt="テトアイコン">
-        </button>
-        
-        <button type="submit" name="icon" value="user_icon03.png">
-        <img src="{{ url_for('static', filename='icon/user_icon03.png') }}" alt="でかつよアイコン">
-        </button>
-        
-        <button type="submit" name="icon" value="user_icon04.png">
-        <img src="{{ url_for('static', filename='icon/user_icon04.png') }}" alt="あのこアイコン">
-        </button>
-        
-        <button type="submit" name="icon" value="user_icon05.png">
-        <img src="{{ url_for('static', filename='icon/user_icon05.png') }}" alt="鎧さんアイコン">
-        </button>
-                
-        <button type="submit" name="icon" value="user_icon06.png">
-        <img src="{{ url_for('static', filename='icon/user_icon06.png') }}" alt="パジャマパーティーズアイコン">
-        </button>
-    </form>
-  </div>
-<form method="post" class="input-row">
-  <button type="submit" name="action" value="決定">決定</button>
-  <button type="reset">やり直す</button>
-</form>
+  <h2>名前を入力してね</h2>
+  <form method="post" class="input-row">
+      <input type="text" name="username" required placeholder="あなたの名前">
+      <div class="character-select-row">
+          <label>
+              <input type="radio" name="icon" value="icon/user_icon01.png" checked>
+              <img src="{{ url_for('static', filename='icon/user_icon01.png') }}" alt="犬アイコン">
+          </label>
+          <label>
+              <input type="radio" name="icon" value="icon/user_icon02.png">
+              <img src="{{ url_for('static', filename='icon/user_icon02.png') }}" alt="テトアイコン">
+          </label>
+                  <label>
+              <input type="radio" name="icon" value="icon/user_icon03.png">
+              <img src="{{ url_for('static', filename='icon/user_icon03.png') }}" alt="でかつよアイコン">
+          </label>
+                  <label>
+              <input type="radio" name="icon" value="icon/user_icon04.png">
+              <img src="{{ url_for('static', filename='icon/user_icon04.png') }}" alt="あのこアイコン">
+          </label>
+                  <label>
+              <input type="radio" name="icon" value="icon/user_icon05.png">
+              <img src="{{ url_for('static', filename='icon/user_icon05.png') }}" alt="鎧さんアイコン">
+          </label>
+                  <label>
+              <input type="radio" name="icon" value="icon/user_icon06.png">
+              <img src="{{ url_for('static', filename='icon/user_icon06.png') }}" alt="パジャマパーティーズアイコン">
+          </label>
+      </div>
+      <button type="submit" name="action" value="決定">決定</button>
+      <button type="reset">やり直す</button>
+  </form>
 </body>
 </html>
