@@ -53,5 +53,15 @@
             </form>
         {% endif %}
     </div>
+
+    <script>
+  // ページ読み込み後にメッセージリストの一番下まで自動スクロール
+  window.onload = function() {
+    var msgList = document.getElementById("message-list");
+    if (msgList) {
+      msgList.scrollTop = msgList.scrollHeight;
+    }
+  };
+</script>
 </body>
 </html>
