@@ -1,7 +1,7 @@
 /* 全体リセット＆フォント */
 body {
     font-family: 'Noto Sans JP', 'Arial', sans-serif;
-    background: #fddca0;
+    background: #e7d7ba;
     text-align: center;
     margin: 0 auto;
     padding: 5px;
@@ -12,15 +12,15 @@ body {
 .chat-box {
     max-width: 450px;
     margin: 5px auto;
-    background: #c2e9fa;
+    background: #d2f0f4;
     border-radius: 20px;
     box-shadow: 0 4px 24px 0 rgba(80,100,120,0.12);
     padding: 12px 0 16px 0;
 }
 .chat-area {
     max-width: 450px;
-    margin: 5px auto;
-    background: #c2e9fa;
+    margin: 10px auto;
+    background: #d2f0f4;
     border-radius: 20px;
     box-shadow: 0 4px 24px 0 rgba(80,100,120,0.12);
     padding: 12px 0 16px 0;
