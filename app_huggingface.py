@@ -14,9 +14,12 @@ HEADERS = {"Authorization": f"Bearer {HUGGINGFACE_API_KEY}"}
 
 def query_llama(prompt):
     payload = {"inputs": prompt}
+
     try:
         response = requests.post(API_URL, headers=HEADERS, json=payload, timeout=30)
+        print("レスポンス内容:", response.text)  # ←ココ追加
         result = response.json()
+
         # モデルによって返却形式が違う場合があるので注意
         if isinstance(result, list):
             # モデルによってはこう返ってくる
