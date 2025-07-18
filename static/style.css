@@ -53,7 +53,7 @@ body {
 }
 .character-select-row button {
     background: #fff;
-    border: 2px solid #c7e7f5;
+    border: 2px solid #f5d268;
     border-radius: 14px;
     padding: 8px 10px 3px 10px;
     text-align: center;
@@ -66,7 +66,7 @@ body {
 }
 .character-select-row button:hover, .character-select-row button:focus {
     background: #f3fbfe;
-    border: 2.5px solid #46c5d2;
+    border: 2.5px solid #f5d268;
 }
 .icon-btn {
     width: 56px;
@@ -152,7 +152,7 @@ body {
     font-size: 1rem;
     border-radius: 12px;
     border: none;
-    background: #46c5d2;
+    background: #f5d268;
     color: #fff;
     padding: 8px 16px;
     cursor: pointer;
@@ -161,7 +161,7 @@ body {
     transition: background 0.2s;
 }
 .input-row button:hover {
-    background: #3ea7b3;
+    background: #f5d268;
 }
 
 /* 履歴/リロードボタン */
@@ -177,14 +177,14 @@ form[action*="download"] button, form[action*="reset"] button {
     margin: 6px 0;
     font-size: 1.06em;
     padding: 10px 0;
-    background: #f9d876;
+    background: #f5d268;
     color: #665300;
     border: none;
     font-weight: bold;
 }
 form[action*="download"] button:hover,
 form[action*="reset"] button:hover {
-    background: #f9d876;
+    background: #f5d268;
 }
 
 /* 一応スクロールして下にくるようにするときの予防策 */
