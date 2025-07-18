@@ -10,7 +10,7 @@
 </head>
 <body>
     <h2>名前を入力してね</h2>
-<form method="post" class="input-row">
+<form method="post" class="character-select-row">
   <input type="text" name="username" required>
   <div>
     <label>
@@ -21,6 +21,18 @@
         <input type="radio" name="icon" value="user_icon02.png">
         <img src="{{ url_for('static', filename='user_icon02.png') }}" alt="テトアイコン2" width="60">
     </label>
+
+    <form method="post" class="character-select-row">
+    <button type="submit" name="character" value="ちいかわ">
+        <img src="{{ url_for('static', filename='images/chiikawa/chiikawa01.png') }}" alt="ちいかわ" class="icon-btn"><br>
+        ちいかわ
+    </button>
+    <form method="post" class="character-select-row">
+    <button type="submit" name="character" value="ちいかわ">
+        <img src="{{ url_for('static', filename='images/chiikawa/chiikawa01.png') }}" alt="ちいかわ" class="icon-btn"><br>
+        ちいかわ
+    </button>
+
       <!-- もっと増やすなら同じパターンで -->
   </div>
 
