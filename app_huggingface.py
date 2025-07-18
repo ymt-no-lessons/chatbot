@@ -9,7 +9,9 @@ app = Flask(__name__)
 load_dotenv()
 HUGGINGFACE_API_KEY = os.getenv("HUGGINGFACE_API_KEY")
 
-API_URL = "https://api-inference.huggingface.co/models/meta-llama/Meta-Llama-3-8B-Instruct"  # ←ここ大事
+API_URL = "https://api-inference.huggingface.co/models/meta-llama/Llama-2-7b-chat-hf"
+ # モデルを変えてみる
+
 HEADERS = {"Authorization": f"Bearer {HUGGINGFACE_API_KEY}"}
 
 def query_llama(prompt):
