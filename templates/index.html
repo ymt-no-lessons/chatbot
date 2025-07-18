@@ -13,29 +13,17 @@
 <form method="post" class="character-select-row">
   <input type="text" name="username" required>
   <div>
-    <label>
-        <input type="radio" name="icon" value="user_icon01.png" checked>
-        <img src="{{ url_for('static', filename='user_icon01.png') }}" alt="犬アイコン1" width="60">
-    </label>
-    <label>
-        <input type="radio" name="icon" value="user_icon02.png">
-        <img src="{{ url_for('static', filename='user_icon02.png') }}" alt="テトアイコン2" width="60">
-    </label>
-
     <form method="post" class="character-select-row">
-    <button type="submit" name="character" value="ちいかわ">
-        <img src="{{ url_for('static', filename='images/chiikawa/chiikawa01.png') }}" alt="ちいかわ" class="icon-btn"><br>
-        ちいかわ
-    </button>
-    <form method="post" class="character-select-row">
-    <button type="submit" name="character" value="ちいかわ">
-        <img src="{{ url_for('static', filename='images/chiikawa/chiikawa01.png') }}" alt="ちいかわ" class="icon-btn"><br>
-        ちいかわ
-    </button>
+        <button type="submit" name="icon" value="user_icon01.png" checked>
+        <img src="{{ url_for('static', filename='user_icon01.png') }}" alt="犬アイコン">
+        </button>
 
-      <!-- もっと増やすなら同じパターンで -->
+        <button type="submit" name="icon" value="user_icon02.png">
+        <img src="{{ url_for('static', filename='user_icon02.png') }}" alt="テトアイコン">
+        </button>
+    </form>
   </div>
-
+<form method="post" class="input-row">
   <button type="submit" name="action" value="決定">決定</button>
   <button type="reset">やり直す</button>
 </form>
