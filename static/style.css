@@ -89,7 +89,7 @@ body {
 }
 
 .bubble {
-    max-width: 75vw;
+    max-width: 70vw;
     min-width: 44px;
     padding: 10px 16px;
     border-radius: 18px;
@@ -103,6 +103,8 @@ body {
     list-style: none;
     margin: 0;
     padding: 0 10px 0 10px;
+    text-align: left;
+
 }
 .message {
     display: flex;
@@ -123,6 +125,7 @@ body {
 .message.right {
     flex-direction: row-reverse;
     justify-content: flex-end;
+    margin-left: auto;  /* ← 追加！これで右端に寄る！ */
 }
 
 .message.right .bubble {
