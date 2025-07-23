@@ -2,73 +2,181 @@
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <title>ちいかわAIチャットボット</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ちいかわAIチャット</title>
+    <!-- Tailwind CSSを読み込むよ -->
+    <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        body { font-family: "Yu Gothic", sans-serif; background: #f7f6f4; margin: 0; }
-        .chat-container { max-width: 480px; margin: 2em auto; background: #fff; border-radius: 16px; box-shadow: 0 2px 8px #ccc; padding: 2em; }
-        .msg { margin-bottom: 1em; }
-        .user { text-align: right; color: #555; }
-        .ai { text-align: left; color: #2186c4; }
-        .stamp { width: 80px; }
-        form { display: flex; gap: 0.5em; margin-top: 2em; }
-        input[type="text"] { flex: 1; font-size: 1.2em; padding: 0.5em; border-radius: 8px; border: 1px solid #ccc; }
-        button { padding: 0.5em 1em; border-radius: 8px; border: none; background: #2186c4; color: #fff; font-size: 1.1em; }
+        /* Interフォントを使うよ */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f0f4f8; /* ちょっと優しい背景色にしてみたよ */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+        .chat-container {
+            background-color: #ffffff;
+            border-radius: 20px; /* 角を丸くするよ */
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1); /* 影をつけて立体感を出すよ */
+            width: 90%;
+            max-width: 500px;
+            padding: 25px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        .chat-messages {
+            height: 400px;
+            overflow-y: auto;
+            border: 1px solid #e2e8f0;
+            border-radius: 10px;
+            padding: 15px;
+            background-color: #fbfdff;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .message {
+            max-width: 80%;
+            padding: 10px 15px;
+            border-radius: 15px;
+            word-wrap: break-word;
+        }
+        .user-message {
+            background-color: #a7f3d0; /* ユーザーのメッセージは優しい緑色 */
+            align-self: flex-end;
+            border-bottom-right-radius: 5px; /* 角を少しだけ変えてみるよ */
+        }
+        .ai-message {
+            background-color: #bfdbfe; /* AIのメッセージは優しい水色 */
+            align-self: flex-start;
+            border-bottom-left-radius: 5px; /* 角を少しだけ変えてみるよ */
+        }
+        .input-area {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+        }
+        .input-area input {
+            flex-grow: 1;
+            padding: 12px 18px;
+            border: 1px solid #cbd5e1;
+            border-radius: 25px; /* 入力欄も丸くするよ */
+            outline: none;
+            font-size: 16px;
+        }
+        .input-area button {
+            background-color: #60a5fa; /* 送信ボタンは青色 */
+            color: white;
+            padding: 12px 20px;
+            border-radius: 25px;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+        .input-area button:hover {
+            background-color: #3b82f6; /* ホバーで色を濃くするよ */
+        }
+        .loading-indicator {
+            text-align: center;
+            padding: 10px;
+            color: #6b7280;
+            font-style: italic;
+        }
     </style>
 </head>
 <body>
     <div class="chat-container">
-        <h2>ちいかわAIチャットボット</h2>
-        <div id="chat-area">
-            <!-- メッセージ表示ここに追加 -->
+        <h1 class="text-3xl font-bold text-center text-gray-800 mb-4">ちいかわAIチャット</h1>
+        <div class="chat-messages" id="chatMessages">
+            <!-- メッセージはここに表示されるよ -->
+            <div class="ai-message message">
+                こんにちは、ゆみたちゃん！ちいかわだよ！
+            </div>
         </div>
-        <form id="chat-form" autocomplete="off">
-            <input type="text" id="message" placeholder="メッセージを入力…" required>
-            <button type="submit">送信</button>
-        </form>
+        <div class="input-area">
+            <input type="text" id="userMessage" placeholder="ちいかわに話しかけてね..." class="flex-grow rounded-full px-5 py-3 border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500">
+            <button id="sendMessage" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-3 px-6 rounded-full shadow-lg">送信</button>
+        </div>
+        <div id="loadingIndicator" class="loading-indicator hidden">
+            ちいかわが考えてるよ...
+        </div>
     </div>
+
     <script>
-        const chatArea = document.getElementById('chat-area');
-        const chatForm = document.getElementById('chat-form');
-        const messageInput = document.getElementById('message');
+        const userMessageInput = document.getElementById('userMessage');
+        const sendMessageButton = document.getElementById('sendMessage');
+        const chatMessagesDiv = document.getElementById('chatMessages');
+        const loadingIndicator = document.getElementById('loadingIndicator');
 
-        // 履歴保存用（シンプルなJS配列だけど後で拡張可！）
-        let history = [];
-
-        chatForm.onsubmit = async (e) => {
-            e.preventDefault();
-            const userMsg = messageInput.value.trim();
-            if (!userMsg) return;
-            // ユーザーメッセージ表示
-            addMessage(userMsg, 'user');
-            messageInput.value = '';
-
-            // AIに送信
-            const res = await fetch('/ask', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-                body: 'message=' + encodeURIComponent(userMsg)
-            });
-            const data = await res.json();
-            let aiMsg = data.reply;
-
-            // スタンプ指示の判定と画像表示例
-            if (aiMsg.includes(':stamp-muri:')) {
-                aiMsg = aiMsg.replace(':stamp-muri:', '<img src="/static/images/chiikawa/muri.png" alt="むり" class="stamp">');
-            }
-            // 他にも :stamp-happy: などに対応したい場合はここで追加
-
-            addMessage(aiMsg, 'ai');
-        };
-
-        // メッセージ追加関数
+        // メッセージをチャット画面に追加する関数だよ
         function addMessage(text, sender) {
-            const div = document.createElement('div');
-            div.className = 'msg ' + sender;
-            div.innerHTML = text;
-            chatArea.appendChild(div);
-            chatArea.scrollTop = chatArea.scrollHeight;
+            const messageDiv = document.createElement('div');
+            messageDiv.classList.add('message');
+            if (sender === 'user') {
+                messageDiv.classList.add('user-message');
+            } else {
+                messageDiv.classList.add('ai-message');
+            }
+            messageDiv.textContent = text;
+            chatMessagesDiv.appendChild(messageDiv);
+            // 最新のメッセージが見えるようにスクロールするよ
+            chatMessagesDiv.scrollTop = chatMessagesDiv.scrollHeight;
         }
+
+        // メッセージを送信する関数だよ
+        async function sendMessage() {
+            const message = userMessageInput.value.trim();
+            if (message === '') {
+                return; // メッセージが空だったら何もしないよ
+            }
+
+            addMessage(message, 'user'); // ユーザーのメッセージを表示するよ
+            userMessageInput.value = ''; // 入力欄をクリアするよ
+            sendMessageButton.disabled = true; // 送信ボタンを使えなくするよ
+            loadingIndicator.classList.remove('hidden'); // ローディング表示を出すよ
+
+            try {
+                // Flaskの/askエンドポイントにメッセージを送るよ
+                // ここを修正したよ！window.location.originを使って絶対パスにするんだ
+                const response = await fetch(window.location.origin + '/ask', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded',
+                    },
+                    body: `message=${encodeURIComponent(message)}`
+                });
+
+                if (!response.ok) {
+                    throw new Error(`HTTPエラー！ステータス: ${response.status}`);
+                }
+
+                const data = await response.json(); // JSON形式でレスポンスを受け取るよ
+                addMessage(data.reply, 'ai'); // AIの返信を表示するよ
+
+            } catch (error) {
+                console.error('エラー発生:', error);
+                addMessage('ごめんね、エラーが出ちゃったみたい...。', 'ai'); // エラーメッセージを表示するよ
+            } finally {
+                sendMessageButton.disabled = false; // 送信ボタンを使えるようにするよ
+                loadingIndicator.classList.add('hidden'); // ローディング表示を隠すよ
+            }
+        }
+
+        // 送信ボタンがクリックされたらメッセージを送信するよ
+        sendMessageButton.addEventListener('click', sendMessage);
+
+        // Enterキーが押されたらメッセージを送信するよ
+        userMessageInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                sendMessage();
+            }
+        });
     </script>
 </body>
 </html>
