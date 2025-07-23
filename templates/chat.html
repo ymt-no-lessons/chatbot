@@ -66,13 +66,10 @@
     <script>
       // ページ表示時に一番下までスクロール
       window.onload = function() {
-        var element = document.documentElement;
-        var bottom = element.scrollHeight - element.clientHeight;
-        window.scroll(0, bottom);
+        var msgList = document.getElementById("message-list");
+        if (msgList) {
+          msgList.scrollTop = msgList.scrollHeight;
         }
     </script>
-
-
-
 </body>
 </html>
