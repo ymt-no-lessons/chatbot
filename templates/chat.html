@@ -66,11 +66,13 @@
     <script>
       // ページ表示時に一番下までスクロール
       window.onload = function() {
-        var msgList = document.getElementById("chat-box");
-        if (msgList) {
-          msgList.scrollTop = msgList.scrollHeight;
+        var element = document.documentElement;
+        var bottom = element.scrollHeight - element.clientHeight;
+        window.scroll(0, bottom);
         }
-      };
     </script>
+
+
+
 </body>
 </html>
