@@ -54,13 +54,19 @@
             </form>
         {% else %}
             <div class="center"><b>来てくれてありがとう！また来てね！</b></div>
+            <form action="/download_history"  class="input-row" method="post">
+                <button type="submit">履歴をダウンロードしておく</button>
+            </form>
+            <form action="/"  class="input-row" method="get">
+                <button type="submit">ダウンロードしないで最初に戻るよ</button>
+            </form>
         {% endif %}
     </div>
 
     <script>
       // ページ表示時に一番下までスクロール
       window.onload = function() {
-        var msgList = document.getElementById("message-list");
+        var msgList = document.getElementById("chat-box");
         if (msgList) {
           msgList.scrollTop = msgList.scrollHeight;
         }
