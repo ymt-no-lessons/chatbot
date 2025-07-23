@@ -20,15 +20,21 @@
             <li class="message {% if message.sender == 'character' %}left{% else %}right{% endif %}">
                 {% if message.sender == 'character' %}
                     <img class="icon" src="{{ url_for('static', filename=images[0]) }}">
-                {% endif %}
-                <div class="bubble">
-                    {% if message.type == 'image' %}
-                        <img src="{{ url_for('static', filename=message.content) }}" width="100" alt="スタンプ">
-                    {% else %}
-                        {{ message.content or message.text }}
-                    {% endif %}
-                </div>
-                {% if message.sender == 'user' %}
+                    <div class="bubble">
+                        {% if message.type == 'image' %}
+                            <img src="{{ url_for('static', filename=message.content) }}" width="100" alt="スタンプ">
+                        {% else %}
+                            {{ message.content or message.text }}
+                        {% endif %}
+                    </div>
+                {% else %}
+                    <div class="bubble">
+                        {% if message.type == 'image' %}
+                            <img src="{{ url_for('static', filename=message.content) }}" width="100" alt="スタンプ">
+                        {% else %}
+                            {{ message.content or message.text }}
+                        {% endif %}
+                    </div>
                     <img class="icon" src="{{ url_for('static', filename=session.get('user_icon', 'user_icon01.png')) }}">
                 {% endif %}
             </li>
