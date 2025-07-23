@@ -124,7 +124,7 @@ body {
 
 .message.right {
     max-width: 60%;
-    float:right;
+    /*float:right;*/
     justify-content: flex-end;
     margin-left: auto;  /* ← 追加！これで右端に寄る！ */
 }
