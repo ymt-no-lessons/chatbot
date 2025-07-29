@@ -4,26 +4,26 @@ body {
     background: #e7d7ba;
     text-align: center;
     margin: 10px auto;
-    padding: 20px;
+    padding: 0;
     min-height: 100vh;
 }
 
 /* チャットボックス */
 .chat-box {
-    max-width: 450px;
+    max-width: 600px;
     margin: 5px auto;
     background: #d2f0f4;
     border-radius: 20px;
     box-shadow: 0 4px 24px 0 rgba(80,100,120,0.12);
-    padding: 12px 0 16px 0;
+    padding: 12px 10px 16px 10px;
 }
 .chat-area {
-    max-width: 450px;
+    max-width: 600px;
     margin: 10px auto;
     background: #d2f0f4;
     border-radius: 20px;
     box-shadow: 0 4px 24px 0 rgba(80,100,120,0.12);
-    padding: 12px 0 16px 0;
+    padding: 12px;
 }
 
 
@@ -179,7 +179,7 @@ body {
 form[action*="download"], form[action*="reset"] {
     display: flex;
     justify-content: center;
-    margin: 10px 0 0 0;
+    margin: 10px 0;
 }
 form[action*="download"] button, form[action*="reset"] button {
     width: 90vw;
@@ -211,7 +211,7 @@ form[action*="reset"] button:hover {
         /*max-width: 99vw;*/
         border-radius: 0;
         box-shadow: none;
-        padding: 4px 0 10px 0;
+        padding: 4px 10px 20px 10px;
     }
     .character-img, .icon {
         width: 42px;
