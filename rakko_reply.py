@@ -34,20 +34,14 @@ def reply(user_message):
         return special
     
     # 通常パターン（ランダム返し）
-    if random.random() < 0.4:  # 40%の確率でスタンプ返し
-        stamp_images = [
-            {"type": "image", "content": "images/rakko/rakko_stamp01.png"},
-            {"type": "image", "content": "images/rakko/rakko_stamp02.png"},
-            {"type": "image", "content": "images/rakko/rakko_stamp03.png"},
-            {"type": "image", "content": "images/rakko/rakko_stamp04.png"},
-            {"type": "image", "content": "images/rakko/rakko_stamp05.png"},
-            {"type": "image", "content": "images/rakko/rakko_stamp07.png"},
-        ]
-        return random.choice(stamp_images)
-
-    # ランダムテキスト返しなど
-    text_patterns = [
+    patterns = [
+        {"type": "image", "content": "images/rakko/rakko_stamp01.png"},
+        {"type": "image", "content": "images/rakko/rakko_stamp02.png"},
+        {"type": "image", "content": "images/rakko/rakko_stamp03.png"},
+        {"type": "image", "content": "images/rakko/rakko_stamp04.png"},
+        {"type": "image", "content": "images/rakko/rakko_stamp05.png"},
+        {"type": "image", "content": "images/rakko/rakko_stamp07.png"},
         {"type": "text", "content": "いい判断だ"},
         {"type": "text", "content": "視野が広いかもしれない"},
     ]
-    return random.choice(text_patterns)
+    return random.choice(patterns)
