@@ -7,21 +7,22 @@ def check_special_words(user_message):
     if "かなしい" in user_message or "悲しい" in user_message or "つらい" in user_message:
         return {"type": "text", "content": "元気を出せッ"}
     if "スイーツ" in user_message or "菓子" in user_message or "おやつ" in user_message or "甘" in user_message:
-        return {"type": "image", "content": "images/rakko/rakko_stamp10.png"}    
+        return {"type": "image", "content": "images/rakko/rakko_stamp10.png"}
     if "すいか" in user_message:
         return {"type": "image", "content": "images/other/suikawari.png"}
     if "水" in user_message or "暑" in user_message or "熱中症" in user_message:
         return {"type": "image", "content": "images/other/water01.png"}
     if "特訓" in user_message or "討伐" in user_message or "ランカー" in user_message:
         return {"type": "text", "content": "強くなりたいと思ったんだ"}
-    if "記念" in user_message or "公園" in user_message or "きねん"  in user_message or "こうえん" in user_message in user_message:
+    if "記念" in user_message or "公園" in user_message or "きねん" in user_message or "こうえん" in user_message:
         return {"type": "image", "content": "images/rakko/rakko_stamp11.png"}
     if "懐か" in user_message or "なつかし" in user_message:
         return {"type": "image", "content": "images/rakko/rakko_stamp12.png"}
-    if "昔" in user_message  or "むかし" in user_message or "思い出"  or "過去" in user_message in user_message:
+    if "昔" in user_message or "むかし" in user_message or "思い出" in user_message or "過去" in user_message:
         return {"type": "image", "content": "images/rakko/rakko_stamp12.png"}
     # ヒットしなければNone
     return None
+
 
 def reply(user_message):
     # 空メッセージ対策
