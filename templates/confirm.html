@@ -8,6 +8,7 @@
 
 </head>
 <body>
+ <div class="chat-box">
     <h2>{{ username }}さんだね！こんにちは！</h2>
     <p>{{ character }}とおしゃべりする？</p>
     <img src="{{ url_for('static', filename=images[0]) }}" alt="{{ character }}" width="200">
@@ -15,5 +16,6 @@
         <button type="submit" name="action" value="決定">{{ character }}とおしゃべりする</button>
         <button type="submit" name="action" value="やり直す">やり直す</button>
     </form>
+ </div>
 </body>
 </html>
