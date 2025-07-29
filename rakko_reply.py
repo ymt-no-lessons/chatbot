@@ -1,4 +1,5 @@
 import random
+import re
 
 # 会話パターンごとに関数を定義するよ
 def check_special_words(user_message):
@@ -16,7 +17,9 @@ def check_special_words(user_message):
         return {"type": "text", "content": "強くなりたいと思ったんだ"}
     if "記念" in user_message or "公園" in user_message or "きねん"  or "こうえん" in user_message in user_message:
         return {"type": "image", "content": "images/rakko/rakko_stamp11.png"}
-    if "懐か" in user_message or "なつかし" in user_message  or "昔" in user_message  or "むかし" in user_message or "思い出"  or "過去" in user_message in user_message:
+    if "懐か" in user_message or "なつかし" in user_message:
+        return {"type": "image", "content": "images/rakko/rakko_stamp12.png"}
+    if "昔" in user_message  or "むかし" in user_message or "思い出"  or "過去" in user_message in user_message:
         return {"type": "image", "content": "images/rakko/rakko_stamp12.png"}
     # ヒットしなければNone
     return None
@@ -32,8 +35,8 @@ def reply(user_message):
         return special
     
     # 通常パターン（ランダム返し）
-    patterns = [
-        {"type": "text", "content": "いい返しだッ"},
+    if random.random() < 0.4:  # 40%の確率でスタンプ返し
+        stamp_images = [
         {"type": "image", "content": "images/rakko/rakko_stamp01.png"},
         {"type": "image", "content": "images/rakko/rakko_stamp02.png"},
         {"type": "image", "content": "images/rakko/rakko_stamp03.png"},
