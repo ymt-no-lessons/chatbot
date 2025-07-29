@@ -10,7 +10,7 @@ body {
 
 /* チャットボックス */
 .chat-box {
-    max-width: 450px;
+    max-width: 600px;
     margin: 5px auto;
     background: #d2f0f4;
     border-radius: 20px;
@@ -18,7 +18,7 @@ body {
     padding: 12px 0 16px 0;
 }
 .chat-area {
-    max-width: 450px;
+    max-width: 600px;
     margin: 10px auto;
     background: #d2f0f4;
     border-radius: 20px;
