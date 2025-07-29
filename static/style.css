@@ -3,8 +3,8 @@ body {
     font-family: 'Noto Sans JP', 'Arial', sans-serif;
     background: #e7d7ba;
     text-align: center;
-    margin: 0 auto;
-    padding: 5px;
+    margin: 10px auto;
+    padding: 20px;
     min-height: 100vh;
 }
 
@@ -179,7 +179,7 @@ body {
 form[action*="download"], form[action*="reset"] {
     display: flex;
     justify-content: center;
-    margin: 10px 0 0 0;
+    margin: 10px 0;
 }
 form[action*="download"] button, form[action*="reset"] button {
     width: 90vw;
@@ -211,7 +211,7 @@ form[action*="reset"] button:hover {
         /*max-width: 99vw;*/
         border-radius: 0;
         box-shadow: none;
-        padding: 4px 0 10px 0;
+        padding: 4px 0 20px 0;
     }
     .character-img, .icon {
         width: 42px;
