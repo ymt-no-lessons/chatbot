@@ -12,6 +12,14 @@ def check_special_words(user_message):
         return {"type": "image", "content": "images/other/suikawari.png"}
     if "水" in user_message or "暑" in user_message or "熱中症" in user_message:
         return {"type": "image", "content": "images/other/water01.png"}
+    if "特訓" in user_message or "討伐" in user_message or "ランカー" in user_message:
+        return {"type": "text", "content": "強くなりたいと思ったんだ"}
+    if "記念" in user_message or "公園" in user_message or "きねん"  in user_message or "こうえん" in user_message in user_message:
+        return {"type": "image", "content": "images/rakko/rakko_stamp11.png"}
+    if "懐か" in user_message or "なつかし" in user_message:
+        return {"type": "image", "content": "images/rakko/rakko_stamp12.png"}
+    if "昔" in user_message  or "むかし" in user_message or "思い出"  or "過去" in user_message in user_message:
+        return {"type": "image", "content": "images/rakko/rakko_stamp12.png"}
     # ヒットしなければNone
     return None
 
@@ -26,13 +34,20 @@ def reply(user_message):
         return special
     
     # 通常パターン（ランダム返し）
-    patterns = [
-        {"type": "text", "content": "いい返しだッ"},
-        {"type": "image", "content": "images/rakko/rakko_stamp01.png"},
-        {"type": "image", "content": "images/rakko/rakko_stamp02.png"},
-        {"type": "image", "content": "images/rakko/rakko_stamp03.png"},
-        {"type": "image", "content": "images/rakko/rakko_stamp04.png"},
-        {"type": "image", "content": "images/rakko/rakko_stamp05.png"}, 
-        {"type": "image", "content": "images/rakko/rakko_stamp07.png"},      
+    if random.random() < 0.4:  # 40%の確率でスタンプ返し
+        stamp_images = [
+            {"type": "image", "content": "images/rakko/rakko_stamp01.png"},
+            {"type": "image", "content": "images/rakko/rakko_stamp02.png"},
+            {"type": "image", "content": "images/rakko/rakko_stamp03.png"},
+            {"type": "image", "content": "images/rakko/rakko_stamp04.png"},
+            {"type": "image", "content": "images/rakko/rakko_stamp05.png"},
+            {"type": "image", "content": "images/rakko/rakko_stamp07.png"},
+        ]
+        return random.choice(stamp_images)
+
+    # ランダムテキスト返しなど
+    text_patterns = [
+        {"type": "text", "content": "いい判断だ"},
+        {"type": "text", "content": "視野が広いかもしれない"},
     ]
-    return random.choice(patterns)
+    return random.choice(text_patterns)

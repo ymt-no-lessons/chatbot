@@ -8,7 +8,7 @@ def check_special_words(user_message):
         return {"type": "text", "content": "どういたしましてッ！"}
     if "応援" in user_message or "がんば" in user_message or "頑張" in user_message:
         return {"type": "image", "content": "images/hachiware/hachiware_stamp08.png"}
-    if "喜び" in user_message or "絶望" in user_message or "穴" in user_message:
+    if "喜" in user_message or "望" in user_message or "絶望" in user_message or "穴" in user_message:
         return {"type": "image", "content": "images/hachiware/hachiware_stamp11.png"}
     if "チキ" in user_message or "ちき" in user_message or "爪" in user_message:
         return {"type": "image", "content": "images/hachiware/hachiware_stamp12.png"}
@@ -80,6 +80,7 @@ def reply(user_message):
         "なんとかなれーッ！",
         "うんうん…",
         "エーッ",
+        "そうなんだ",
         "したいのッ？共有ッ！",
         {"type": "image", "content": "images/hachiware/hachiware_stamp08.png"},
         {"type": "image", "content": "images/hachiware/hachiware_stamp09.png"},
