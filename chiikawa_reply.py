@@ -14,9 +14,9 @@ def check_special_words(user_message):
         return {"type": "image", "content": "images/chiikawa/chiikawa_stamp_iya.png"}
     if "かなしい" in user_message or "悲しい" in user_message:
         return {"type": "text", "content": "ワァ…"}
-    if "悪夢" in user_message or "アクム" in user_message or "あくむ" in user_message:
+    if "夢" in user_message or "アクム" in user_message or "あくむ" in user_message:
         return {"type": "image", "content": "images/chiikawa/chiikawa_stamp_nightmare.png"}
-    if "がんばって" in user_message or "頑張って" in user_message or "がんばれ" in user_message or "頑張れ" in user_message:
+    if "がんばって" in user_message or "頑張って" in user_message or "がんば" in user_message or "頑張" in user_message:
         return {"type": "image", "content": "images/chiikawa/chiikawa_stamp06.png"}
     if "口" in user_message or "出して" in user_message:
         return {"type": "image", "content": "images/chiikawa/chiikawa_stamp08.png"}
@@ -24,9 +24,9 @@ def check_special_words(user_message):
         return {"type": "image", "content": "images/chiikawa/chiikawa_stamp09.png"}
     if "黒" in user_message or "流れ星" in user_message or "ループ" in user_message:
         return {"type": "image", "content": "images/chiikawa/chiikawa_stamp_loop.png"}
-    if "試験" in user_message or "テスト" in user_message:
+    if "試験" in user_message or "テスト" in user_message or "しけん" in user_message:
         return {"type": "image", "content": "images/chiikawa/chiikawa_stamp_test.png"}
-    if "５" in user_message or "5" in user_message:
+    if "５" in user_message or "5" in user_message or "くさ" in user_message or "草" in user_message:
         return {"type": "image", "content": "images/chiikawa/chiikawa_stamp_aun.png"}
     if "すいか" in user_message:
         return {"type": "image", "content": "images/other/suikawari.png"}
@@ -69,9 +69,6 @@ def reply(user_message):
     patterns = [
         {"type": "text", "content": "ワァ…"},
         {"type": "text", "content": extract_head(user_message)},  # ←ここ！
-        {"type": "text", "content": user_message[:2] + "…"},
-        {"type": "text", "content": user_message[-1] + "…"},
-        {"type": "text", "content": user_message[-2:] + "…"},
         {"type": "image", "content": "images/chiikawa/chiikawa_stamp01.png"},
         {"type": "image", "content": "images/chiikawa/chiikawa_stamp02.png"},
         {"type": "image", "content": "images/chiikawa/chiikawa_stamp03.png"},

@@ -11,7 +11,13 @@ def check_special_words(user_message):
     if "すいか" in user_message:
         return {"type": "image", "content": "images/other/suikawari.png"}
     if "水" in user_message or "暑" in user_message or "熱中症" in user_message:
-        return {"type": "image", "content": "images/other/water01.png"}
+        return {"type": "image", "content":}
+    if "特訓" in user_message or "討伐" in user_message or "ランカー" "images/other/water01.png"  or "戦" in user_message in user_message:
+        return {"type": "text", "content": "強くなりたいと思ったんだ"}
+    if "記念" in user_message or "公園" in user_message or "きねん"  or "こうえん" in user_message in user_message:
+        return {"type": "image", "content": "images/rakko/rakko_stamp11.png"}
+    if "懐か" in user_message or "なつかし" in user_message  or "昔" in user_message  or "むかし" in user_message or "思い出"  or "過去" in user_message in user_message:
+        return {"type": "image", "content": "images/rakko/rakko_stamp12.png"}
     # ヒットしなければNone
     return None
 

@@ -7,7 +7,7 @@ character_data = {
         ],
         'label': 'ちいかわ',
         'greeting': 'ワァ…',
-        'bye_message': 'ア……',
+        'bye_message': 'ア……エト……',
         'bye_images': [
             'images/bye/byebye01.png',
             'images/bye/byebye07.png'
@@ -48,7 +48,7 @@ character_data = {
         ],
         'label': 'シーサー',
         'greeting': 'お師匠ッ！',
-        'bye_message': 'エト……',
+        'bye_message': 'そろそろ勉強がんばりマース！',
         'bye_images': [
             'images/bye/byebye01.png',
             'images/bye/byebye07.png'
@@ -63,7 +63,7 @@ character_data = {
         'greeting': 'いい判断だッ！',
         'bye_message': '今日は楽しかったなッ',
         'bye_images': [
-            'images/bye/byebye01.png',
+            'images/bye/byebye06.png',
             'images/bye/byebye07.png'
         ]
     },
@@ -74,15 +74,15 @@ character_data = {
         ],
         'label': 'くりまんじゅう',
         'greeting': 'ハァーッ！',
-        'bye_message': 'ハァ……',
+        'bye_message': 'ハァーッ！',
         'bye_images': [
-            'images/bye/byebye01.png',
+            'images/bye/byebye11.png',
             'images/bye/byebye07.png'
         ]
     },
     'モモンガ': {
         'images': [
-            'images/momonga/momonga01.png',
+            'images/momonga/momonga12.png',
             'images/momonga/momonga02.png'
         ],
         'label': 'モモンガ',
@@ -115,7 +115,7 @@ character_data = {
         'greeting': '友好型かッ',
         'bye_message': '今日はありがとう！',
         'bye_images': [
-            'images/bye/byebye01.png',
+            'images/bye/byebye05.png',
             'images/bye/byebye07.png'
         ]
     },
@@ -166,7 +166,11 @@ character_data = {
         'おやすみィィィ…'
     ],
     'bye_images': [
-        'images/chiikawa/chiikawa_stamp_bye.png',
-        'images/chiikawa/chiikawa_stamp_sleep.png'
+        'images/bye/byebye01.png',
+        'images/bye/byebye02.png',
+        'images/bye/byebye04.png',          
+        'images/bye/byebye07.png'
+        'images/bye/byebye09.png'
+        'images/bye/byebye10.png'
     ]
 }

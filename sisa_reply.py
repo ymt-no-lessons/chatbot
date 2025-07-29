@@ -9,7 +9,11 @@ def check_special_words(user_message):
         return {"type": "image", "content": "images/sisa/sisa_stamp07.png"}
     if "自由" in user_message or "明日" in user_message:
         return {"type": "image", "content": "images/sisa/sisa_stamp08.png"}
-
+    if "じゃない" in user_message or "ちがう" in user_message or "違う" in user_message or "ではない" in user_message:
+        return {"type": "image", "content": "images/sisa/sisa_stamp09.png"}
+    if "勉強" in user_message or "資格" in user_message or "お酒" in user_message:
+        return  {"type": "text", "content": "がんばりマース"}
+    
     # ヒットしなければNone
     return None
 
