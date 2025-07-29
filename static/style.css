@@ -4,7 +4,7 @@ body {
     background: #e7d7ba;
     text-align: center;
     margin: 10px auto;
-    padding: 20px;
+    padding: 0;
     min-height: 100vh;
 }
 
@@ -15,7 +15,7 @@ body {
     background: #d2f0f4;
     border-radius: 20px;
     box-shadow: 0 4px 24px 0 rgba(80,100,120,0.12);
-    padding: 12px 0 16px 0;
+    padding: 12px 10px 16px 10px;
 }
 .chat-area {
     max-width: 600px;
@@ -23,7 +23,7 @@ body {
     background: #d2f0f4;
     border-radius: 20px;
     box-shadow: 0 4px 24px 0 rgba(80,100,120,0.12);
-    padding: 12px 0 16px 0;
+    padding: 12px;
 }
 
 
@@ -211,7 +211,7 @@ form[action*="reset"] button:hover {
         /*max-width: 99vw;*/
         border-radius: 0;
         box-shadow: none;
-        padding: 4px 0 20px 0;
+        padding: 4px 10px 20px 10px;
     }
     .character-img, .icon {
         width: 42px;
